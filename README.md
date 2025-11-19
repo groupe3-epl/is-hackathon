@@ -4,3 +4,6 @@ Petit site vitrine pour un service de protection : des pages HTML unique articul
 1- Jeu de dévinette
 2- Jeu de puzzle
 3-Eches (*)
+4-Jeu de Batonnet
+5-Jeu de Bonneteau
+6- Jeu de quiz
