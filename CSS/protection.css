@@ -1,0 +1,117 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing:border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: url(../Photos_principales/protection.jpg);
+    background-position: center;
+    background-size: cover;
+}
+
+section {
+    background-color: transparent;
+    backdrop-filter: blur(20px);
+    padding: 30px;
+    width: 420px;
+    border-radius: 20px;
+}
+
+section h1 {
+    font-size: 30px;
+    text-align: center;
+    color: #fff;
+    margin-bottom: 20px;
+}
+
+.input-box {
+    width: 100%;
+    position: relative;
+    margin-bottom: 25px;
+
+}
+
+.input-box input {
+    width: 100%;
+    padding: 15px;
+    border-radius: 25px;
+    outline: none;
+    background-color: transparent;
+    border: 2px solid rgba(255,255,255,0.2);
+    color: #fff;
+    padding-right: 40px;
+}
+
+.input-box input::placeholder {
+    color: #fff;
+}
+
+.input-box i {
+    position: absolute;
+    translate: translateY(-50px);
+    right: 20px;
+    top: 50%;
+    color: #fff;
+}
+
+.remember-forgot {
+    display: flex;
+    justify-content: space-between;
+    align-self: center;
+    font-size: 14px;
+    color: #fff;
+    margin-bottom: 25px;
+}
+
+.member-forgot a , .register-link a {
+    color: #fff;
+    text-decoration: none;
+    transition: 0.5s;
+    -webkit-transition: 0.5s;
+    -moz-transition: 0.5s;
+    -ms-transition: 0.5s;
+    -o-transition: 0.5s;
+    font-weight: bold;
+}
+
+.member.forgot a:hover, .register-link a {
+    text-decoration: underline;
+}
+.login-btn {
+    width: 100%;
+    padding: 15px;
+    border-radius: 25px;
+    -webkit-border-radius: 25px;
+    -moz-border-radius: 25px;
+    -ms-border-radius: 25px;
+    -o-border-radius: 25px;
+    outline: 0;
+    font-weight: bold;
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: 0.5s;
+    -webkit-transition: 0.5s;
+    -moz-transition: 0.5s;
+    -ms-transition: 0.5s;
+    -o-transition: 0.5s;
+}
+
+.login-btn:hover {
+    background: transparent;
+    border: 2px  solid rgba(255,255,255,0.2);
+    color: #fff;
+}
+
+.register-link {
+    text-align: center;
+    margin-top: 25px;
+    color: #fff;
+    font-size: 14px;
+}
