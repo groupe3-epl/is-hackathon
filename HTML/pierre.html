@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../CSS/pierre.css">
+    <title>Pierre Papier Ciseaux</title>
+</head>
+<body>  
+  <!-- Vidéo en arrière-plan -->
+  <video autoplay muted loop id="bg-video" playsinline>
+    <source src="../Photos_principales/Design%20sans%20titre.mp4" type="video/mp4">
+    Votre navigateur ne supporte pas la vidéo HTML5.
+  </video>
+
+  <!-- Contenu visible -->
+  <div class="content">
+    <h4>Rock🌸Paper🌸Scissors</h4>
+    <p style="color:aliceblue">Bienvenue dans cet espace !<br> Ici, tu pourras à la fois réfléchir, t’amuser et apprendre. Alors, qu’attends‑tu pour te lancer et jouer ?</p>
+    <img src="../Photos_principales/main.jpg" alt="ppc" width="400" />
+    <div style="margin-top:1rem;">
+      <a href="../HTML/pierre2.html" class="btn">Jouer maintenant!!!!</a>
+      <button id="quitter" style="margin-left:0.5rem;"><a href="../HTML/menu.html">Quitter</a></button>
+    </div>
+  </div>
+
+  <!-- Éléments utilisés par le JS (modaux / écrans) -->
+  <div id="pause-modal" class="pause-modal" aria-hidden="true" style="display:none;"></div>
+  <div id="game-screen" class="game-screen" style="display:none;"></div>
+  <div id="level-selection" class="level-selection" style="display:none;"></div>
+
+  
+</body>
+</html>
