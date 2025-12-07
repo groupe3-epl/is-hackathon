@@ -121,7 +121,7 @@ document.querySelectorAll('.game-card__play').forEach((button) => {
     });
 });
 
-// Vérification et affichage des informations utilisateur
+// Vérification des informations utilisateur (sans affichage dans le menu)
 function displayUserInfo() {
     const userData = localStorage.getItem('user');
     
@@ -129,127 +129,13 @@ function displayUserInfo() {
         try {
             const user = JSON.parse(userData);
             
-            // Afficher les informations dans la console
+            // Afficher les informations dans la console uniquement
             console.log('Utilisateur connecté:', user);
             console.log('Email:', user.email);
             console.log('Nom:', user.name);
             console.log('Provider:', user.provider);
             
-            // Créer ou mettre à jour l'affichage du profil dans le menu
-            const navLinks = document.querySelector('.nav__links');
-            if (navLinks) {
-                // Vérifier si le profil utilisateur existe déjà
-                let userProfile = document.querySelector('.user-profile');
-                
-                if (!userProfile) {
-                    // Créer l'élément profil utilisateur
-                    userProfile = document.createElement('li');
-                    userProfile.className = 'user-profile';
-                    userProfile.innerHTML = `
-                        <div class="user-profile__container">
-                            <img src="${user.picture || 'https://i.pravatar.cc/150'}" alt="${user.name}" class="user-profile__avatar">
-                            <div class="user-profile__info">
-                                <span class="user-profile__name">${user.name}</span>
-                                <span class="user-profile__email">${user.email}</span>
-                            </div>
-                            <button class="user-profile__logout" title="Déconnexion">
-                                <i class="fa-solid fa-sign-out-alt"></i>
-                            </button>
-                        </div>
-                    `;
-                    
-                    // Insérer avant le dernier élément (bouton Démo/Inscription)
-                    const lastItem = navLinks.querySelector('li:last-child');
-                    if (lastItem) {
-                        navLinks.insertBefore(userProfile, lastItem);
-                    } else {
-                        navLinks.appendChild(userProfile);
-                    }
-                    
-                    // Ajouter les styles si nécessaire
-                    if (!document.querySelector('#user-profile-styles')) {
-                        const style = document.createElement('style');
-                        style.id = 'user-profile-styles';
-                        style.textContent = `
-                            .user-profile {
-                                margin-left: auto;
-                                padding: 0 8px;
-                            }
-                            .user-profile__container {
-                                display: flex;
-                                align-items: center;
-                                gap: 10px;
-                                padding: 6px 12px;
-                                border-radius: 20px;
-                                background: rgba(255, 255, 255, 0.05);
-                                border: 1px solid rgba(255, 255, 255, 0.1);
-                            }
-                            .user-profile__avatar {
-                                width: 32px;
-                                height: 32px;
-                                border-radius: 50%;
-                                object-fit: cover;
-                                border: 2px solid rgba(83, 179, 255, 0.5);
-                            }
-                            .user-profile__info {
-                                display: flex;
-                                flex-direction: column;
-                                gap: 2px;
-                            }
-                            .user-profile__name {
-                                font-size: 0.85rem;
-                                font-weight: 600;
-                                color: var(--text);
-                            }
-                            .user-profile__email {
-                                font-size: 0.7rem;
-                                color: var(--muted);
-                            }
-                            .user-profile__logout {
-                                background: none;
-                                border: none;
-                                color: var(--muted);
-                                cursor: pointer;
-                                padding: 4px;
-                                font-size: 0.9rem;
-                                transition: color 0.25s ease;
-                            }
-                            .user-profile__logout:hover {
-                                color: #ff5757;
-                            }
-                            @media (max-width: 860px) {
-                                .user-profile {
-                                    margin-left: 0;
-                                    width: 100%;
-                                }
-                                .user-profile__container {
-                                    width: 100%;
-                                    justify-content: space-between;
-                                }
-                            }
-                        `;
-                        document.head.appendChild(style);
-                    }
-                    
-                    // Gestion de la déconnexion
-                    const logoutBtn = userProfile.querySelector('.user-profile__logout');
-                    if (logoutBtn) {
-                        logoutBtn.addEventListener('click', () => {
-                            if (confirm('Voulez-vous vraiment vous déconnecter ?')) {
-                                localStorage.removeItem('user');
-                                window.location.href = 'protection.html';
-                            }
-                        });
-                    }
-                }
-            }
-            
-            // Afficher un message de bienvenue dans le hero
-            const heroContent = document.querySelector('.hero__content h1');
-            if (heroContent && !heroContent.dataset.modified) {
-                heroContent.textContent = `Bienvenue ${user.name} !`;
-                heroContent.dataset.modified = 'true';
-            }
+            // Ne pas afficher le profil dans le menu (photo et email retirés)
             
         } catch (error) {
             console.error('Erreur lors de la lecture des données utilisateur:', error);

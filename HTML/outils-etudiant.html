@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Outils Étudiant - Jeux.One</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="../CSS/outils-etudiant.css">
+</head>
+<body>
+    <div class="scene">
+        <div class="scene__glow"></div>
+        <div class="scene__grid"></div>
+    </div>
+
+    <header class="tools-header">
+        <nav class="nav" aria-label="Navigation principale">
+            <a class="nav__logo" href="menu.html">
+                <span>Jeux.One</span>
+            </a>
+            <a href="menu.html" class="back-btn">
+                <i class="fa-solid fa-arrow-left"></i> Retour au menu
+            </a>
+        </nav>
+    </header>
+
+    <main class="tools-container">
+        <section class="tools-hero">
+            <h1><i class="fa-solid fa-graduation-cap"></i> Outils Étudiant</h1>
+            <p>Ressources complètes : Programmation, IA, Analyse de données, Vidéos YouTube et Documents PDF</p>
+        </section>
+
+        <section class="resources-section">
+            <div class="category">
+                <h2><i class="fa-solid fa-code"></i> Langages de Programmation</h2>
+                <div class="resources-grid">
+                    <a href="https://www.freecodecamp.org/" target="_blank" rel="noopener noreferrer" class="resource-card">
+                        <div class="resource-icon">
+                            <i class="fa-solid fa-laptop-code"></i>
+                        </div>
+                        <h3>FreeCodeCamp</h3>
+                        <p>Cours gratuits de programmation et certifications</p>
+                        <span class="resource-tag">Gratuit</span>
+                    </a>
+
+                    <a href="https://www.codecademy.com/" target="_blank" rel="noopener noreferrer" class="resource-card">
+                        <div class="resource-icon">
+                            <i class="fa-solid fa-graduation-cap"></i>
+                        </div>
+                        <h3>Codecademy</h3>
+                        <p>Apprenez à coder interactivement</p>
+                        <span class="resource-tag">Gratuit/Payant</span>
+                    </a>
+
+                    <a href="https://www.coursera.org/" target="_blank" rel="noopener noreferrer" class="resource-card">
+                        <div class="resource-icon">
+                            <i class="fa-solid fa-book"></i>
+                        </div>
+                        <h3>Coursera</h3>
+                        <p>Cours en ligne de grandes universités</p>
+                        <span class="resource-tag">Gratuit/Payant</span>
+                    </a>
+
+                    <a href="https://www.udemy.com/" target="_blank" rel="noopener noreferrer" class="resource-card">
+                        <div class="resource-icon">
+                            <i class="fa-solid fa-video"></i>
+                        </div>
+                        <h3>Udemy</h3>
+                        <p>Plateforme de cours en ligne</p>
+                        <span class="resource-tag">Payant</span>
+                    </a>
+
+                    <a href="https://www.edx.org/" target="_blank" rel="noopener noreferrer" class="resource-card">
+                        <div class="resource-icon">
+                            <i class="fa-solid fa-university"></i>
+                        </div>
+                        <h3>edX</h3>
+                        <p>Cours en ligne de MIT, Harvard et plus</p>
+                        <span class="resource-tag">Gratuit/Payant</span>
+                    </a>
+
+                    <a href="https://www.khanacademy.org/" target="_blank" rel="noopener noreferrer" class="resource-card">
+                        <div class="resource-icon">
+                            <i class="fa-solid fa-chalkboard-teacher"></i>
+                        </div>
+                        <h3>Khan Academy</h3>
+                        <p>Éducation gratuite pour tous</p>
+                        <span class="resource-tag">Gratuit</span>
+                    </a>
+                </div>
+            </div>
+
+            <div class="category">
+                <h2><i class="fa-solid fa-globe"></i> Développement Web</h2>
+                <div class="resources-grid">
+                    <a href="https://developer.mozilla.org/" target="_blank" rel="noopener noreferrer" class="resource-card">
+                        <div class="resource-icon">
+                            <i class="fa-brands fa-firefox"></i>
+                        </div>
+                        <h3>MDN Web Docs</h3>
+                        <p>Documentation complète du web</p>
+                        <span class="resource-tag">Gratuit</span>
+                    </a>
+
+                    <a href="https://www.w3schools.com/" target="_blank" rel="noopener noreferrer" class="resource-card">
+                        <div class="resource-icon">
+                            <i class="fa-solid fa-school"></i>
+                        </div>
+                        <h3>W3Schools</h3>
+                        <p>Tutoriels et références web</p>
+                        <span class="resource-tag">Gratuit</span>
+                    </a>
+
+                    <a href="https://www.theodinproject.com/" target="_blank" rel="noopener noreferrer" class="resource-card">
+                        <div class="resource-icon">
+                            <i class="fa-solid fa-project-diagram"></i>
+                        </div>
+                        <h3>The Odin Project</h3>
+                        <p>Parcours complet de développement web</p>
+                        <span class="resource-tag">Gratuit</span>
+                    </a>
+
+                    <a href="https://www.frontendmentor.io/" target="_blank" rel="noopener noreferrer" class="resource-card">
+                        <div class="resource-icon">
+                            <i class="fa-solid fa-paint-brush"></i>
+                        </div>
+                        <h3>Frontend Mentor</h3>
+                        <p>Défis de design frontend</p>
+                        <span class="resource-tag">Gratuit/Payant</span>
+                    </a>
+
+                    <a href="https://css-tricks.com/" target="_blank" rel="noopener noreferrer" class="resource-card">
+                        <div class="resource-icon">
+                            <i class="fa-brands fa-css3-alt"></i>
+                        </div>
+                        <h3>CSS-Tricks</h3>
+                        <p>Astuces et guides CSS</p>
+                        <span class="resource-tag">Gratuit</span>
+                    </a>
+
+                    <a href="https://javascript.info/" target="_blank" rel="noopener noreferrer" class="resource-card">
+                        <div class="resource-icon">
+                            <i class="fa-brands fa-js"></i>
+                        </div>
+                        <h3>JavaScript.info</h3>
+                        <p>Guide moderne de JavaScript</p>
+                        <span class="resource-tag">Gratuit</span>
+                    </a>
+                </div>
+            </div>
+
+            <div class="category">
+                <h2><i class="fa-solid fa-tools"></i> Outils et Pratique</h2>
+                <div class="resources-grid">
+                    <a href="https://github.com/" target="_blank" rel="noopener noreferrer" class="resource-card">
+                        <div class="resource-icon">
+                            <i class="fa-brands fa-github"></i>
+                        </div>
+                        <h3>GitHub</h3>
+                        <p>Hébergement de code et collaboration</p>
+                        <span class="resource-tag">Gratuit</span>
+                    </a>
+
+                    <a href="https://codepen.io/" target="_blank" rel="noopener noreferrer" class="resource-card">
+                        <div class="resource-icon">
+                            <i class="fa-brands fa-codepen"></i>
+                        </div>
+                        <h3>CodePen</h3>
+                        <p>Éditeur de code en ligne</p>
+                        <span class="resource-tag">Gratuit</span>
+                    </a>
+
+                    <a href="https://stackoverflow.com/" target="_blank" rel="noopener noreferrer" class="resource-card">
+                        <div class="resource-icon">
+                            <i class="fa-brands fa-stack-overflow"></i>
+                        </div>
+                        <h3>Stack Overflow</h3>
+                        <p>Questions et réponses de programmation</p>
+                        <span class="resource-tag">Gratuit</span>
+                    </a>
+
+                    <a href="https://leetcode.com/" target="_blank" rel="noopener noreferrer" class="resource-card">
+                        <div class="resource-icon">
+                            <i class="fa-solid fa-code-branch"></i>
+                        </div>
+                        <h3>LeetCode</h3>
+                        <p>Problèmes d'algorithmes et d'entretiens</p>
+                        <span class="resource-tag">Gratuit/Payant</span>
+                    </a>
+
+                    <a href="https://www.hackerrank.com/" target="_blank" rel="noopener noreferrer" class="resource-card">
+                        <div class="resource-icon">
+                            <i class="fa-solid fa-trophy"></i>
+                        </div>
+                        <h3>HackerRank</h3>
+                        <p>Défis de programmation et compétitions</p>
+                        <span class="resource-tag">Gratuit</span>
+                    </a>
+
+                    <a href="https://www.codewars.com/" target="_blank" rel="noopener noreferrer" class="resource-card">
+                        <div class="resource-icon">
+                            <i class="fa-solid fa-fist-raised"></i>
+                        </div>
+                        <h3>Codewars</h3>
+                        <p>Entraînement de programmation par katas</p>
+                        <span class="resource-tag">Gratuit</span>
+                    </a>
+                </div>
+            </div>
+
+            <div class="category">
+                <h2><i class="fa-solid fa-book-open"></i> Documentation et Références</h2>
+                <div class="resources-grid">
+                    <a href="https://devdocs.io/" target="_blank" rel="noopener noreferrer" class="resource-card">
+                        <div class="resource-icon">
+                            <i class="fa-solid fa-book"></i>
+                        </div>
+                        <h3>DevDocs</h3>
+                        <p>Documentation de référence rapide</p>
+                        <span class="resource-tag">Gratuit</span>
+                    </a>
+
+                    <a href="https://www.canva.com/" target="_blank" rel="noopener noreferrer" class="resource-card">
+                        <div class="resource-icon">
+                            <i class="fa-solid fa-palette"></i>
+                        </div>
+                        <h3>Canva</h3>
+                        <p>Outils de design graphique</p>
+                        <span class="resource-tag">Gratuit/Payant</span>
+                    </a>
+
+                    <a href="https://www.figma.com/" target="_blank" rel="noopener noreferrer" class="resource-card">
+                        <div class="resource-icon">
+                            <i class="fa-brands fa-figma"></i>
+                        </div>
+                        <h3>Figma</h3>
+                        <p>Outils de design UI/UX</p>
+                        <span class="resource-tag">Gratuit/Payant</span>
+                    </a>
+
+                    <a href="https://fonts.google.com/" target="_blank" rel="noopener noreferrer" class="resource-card">
+                        <div class="resource-icon">
+                            <i class="fa-solid fa-font"></i>
+                        </div>
+                        <h3>Google Fonts</h3>
+                        <p>Bibliothèque de polices gratuites</p>
+                        <span class="resource-tag">Gratuit</span>
+                    </a>
+
+                    <a href="https://www.flaticon.com/" target="_blank" rel="noopener noreferrer" class="resource-card">
+                        <div class="resource-icon">
+                            <i class="fa-solid fa-icons"></i>
+                        </div>
+                        <h3>Flaticon</h3>
+                        <p>Icônes gratuites et premium</p>
+                        <span class="resource-tag">Gratuit/Payant</span>
+                    </a>
+
+                    <a href="https://unsplash.com/" target="_blank" rel="noopener noreferrer" class="resource-card">
+                        <div class="resource-icon">
+                            <i class="fa-solid fa-image"></i>
+                        </div>
+                        <h3>Unsplash</h3>
+                        <p>Photos libres de droits</p>
+                        <span class="resource-tag">Gratuit</span>
+                    </a>
+                </div>
+            </div>
+
+            <div class="category">
+                <h2><i class="fa-solid fa-chart-line"></i> Analyse de Données</h2>
+                <div class="resources-grid">
+                    <a href="https://www.kaggle.com/" target="_blank" rel="noopener noreferrer" class="resource-card">
+                        <div class="resource-icon">
+                            <i class="fa-solid fa-database"></i>
+                        </div>
+                        <h3>Kaggle</h3>
+                        <p>Plateforme de data science et compétitions</p>
+                        <span class="resource-tag">Gratuit</span>
+                    </a>
+
+                    <a href="https://www.tableau.com/" target="_blank" rel="noopener noreferrer" class="resource-card">
+                        <div class="resource-icon">
+                            <i class="fa-solid fa-chart-bar"></i>
+                        </div>
+                        <h3>Tableau</h3>
+                        <p>Visualisation de données avancée</p>
+                        <span class="resource-tag">Gratuit/Payant</span>
+                    </a>
+
+                    <a href="https://powerbi.microsoft.com/" target="_blank" rel="noopener noreferrer" class="resource-card">
+                        <div class="resource-icon">
+                            <i class="fa-solid fa-chart-pie"></i>
+                        </div>
+                        <h3>Power BI</h3>
+                        <p>Outils d'analyse et visualisation Microsoft</p>
+                        <span class="resource-tag">Gratuit/Payant</span>
+                    </a>
+
+                    <a href="https://www.python.org/" target="_blank" rel="noopener noreferrer" class="resource-card">
+                        <div class="resource-icon">
+                            <i class="fa-brands fa-python"></i>
+                        </div>
+                        <h3>Python</h3>
+                        <p>Langage pour l'analyse de données</p>
+                        <span class="resource-tag">Gratuit</span>
+                    </a>
+
+                    <a href="https://pandas.pydata.org/" target="_blank" rel="noopener noreferrer" class="resource-card">
+                        <div class="resource-icon">
+                            <i class="fa-solid fa-table"></i>
+                        </div>
+                        <h3>Pandas</h3>
+                        <p>Bibliothèque Python pour l'analyse de données</p>
+                        <span class="resource-tag">Gratuit</span>
+                    </a>
+
+                    <a href="https://jupyter.org/" target="_blank" rel="noopener noreferrer" class="resource-card">
+                        <div class="resource-icon">
+                            <i class="fa-solid fa-file-code"></i>
+                        </div>
+                        <h3>Jupyter Notebook</h3>
+                        <p>Environnement interactif pour l'analyse</p>
+                        <span class="resource-tag">Gratuit</span>
+                    </a>
+
+                    <a href="https://www.r-project.org/" target="_blank" rel="noopener noreferrer" class="resource-card">
+                        <div class="resource-icon">
+                            <i class="fa-solid fa-chart-line"></i>
+                        </div>
+                        <h3>R Project</h3>
+                        <p>Langage pour statistiques et analyse</p>
+                        <span class="resource-tag">Gratuit</span>
+                    </a>
+
+                    <a href="https://www.anaconda.com/" target="_blank" rel="noopener noreferrer" class="resource-card">
+                        <div class="resource-icon">
+                            <i class="fa-solid fa-server"></i>
+                        </div>
+                        <h3>Anaconda</h3>
+                        <p>Distribution Python pour data science</p>
+                        <span class="resource-tag">Gratuit</span>
+                    </a>
+                </div>
+            </div>
+
+            <div class="category">
+                <h2><i class="fa-solid fa-robot"></i> Intelligence Artificielle par Domaine</h2>
+                <div class="resources-grid">
+                    <a href="https://chat.openai.com/" target="_blank" rel="noopener noreferrer" class="resource-card">
+                        <div class="resource-icon">
+                            <i class="fa-solid fa-comments"></i>
+                        </div>
+                        <h3>ChatGPT</h3>
+                        <p>Assistant IA généraliste pour tous domaines</p>
+                        <span class="resource-tag">Gratuit/Payant</span>
+                    </a>
+
+                    <a href="https://claude.ai/" target="_blank" rel="noopener noreferrer" class="resource-card">
+                        <div class="resource-icon">
+                            <i class="fa-solid fa-brain"></i>
+                        </div>
+                        <h3>Claude AI</h3>
+                        <p>Assistant IA pour analyse et rédaction</p>
+                        <span class="resource-tag">Gratuit/Payant</span>
+                    </a>
+
+                    <a href="https://www.perplexity.ai/" target="_blank" rel="noopener noreferrer" class="resource-card">
+                        <div class="resource-icon">
+                            <i class="fa-solid fa-search"></i>
+                        </div>
+                        <h3>Perplexity</h3>
+                        <p>IA de recherche avec sources citées</p>
+                        <span class="resource-tag">Gratuit/Payant</span>
+                    </a>
+
+                    <a href="https://www.notion.so/" target="_blank" rel="noopener noreferrer" class="resource-card">
+                        <div class="resource-icon">
+                            <i class="fa-solid fa-sticky-note"></i>
+                        </div>
+                        <h3>Notion AI</h3>
+                        <p>IA pour organisation et productivité</p>
+                        <span class="resource-tag">Gratuit/Payant</span>
+                    </a>
+
+                    <a href="https://www.grammarly.com/" target="_blank" rel="noopener noreferrer" class="resource-card">
+                        <div class="resource-icon">
+                            <i class="fa-solid fa-spell-check"></i>
+                        </div>
+                        <h3>Grammarly</h3>
+                        <p>IA pour correction et amélioration de texte</p>
+                        <span class="resource-tag">Gratuit/Payant</span>
+                    </a>
+
+                    <a href="https://www.midjourney.com/" target="_blank" rel="noopener noreferrer" class="resource-card">
+                        <div class="resource-icon">
+                            <i class="fa-solid fa-paint-brush"></i>
+                        </div>
+                        <h3>Midjourney</h3>
+                        <p>IA génération d'images artistiques</p>
+                        <span class="resource-tag">Payant</span>
+                    </a>
+
+                    <a href="https://www.copy.ai/" target="_blank" rel="noopener noreferrer" class="resource-card">
+                        <div class="resource-icon">
+                            <i class="fa-solid fa-pen-fancy"></i>
+                        </div>
+                        <h3>Copy.ai</h3>
+                        <p>IA pour rédaction et copywriting</p>
+                        <span class="resource-tag">Gratuit/Payant</span>
+                    </a>
+
+                    <a href="https://www.tensorflow.org/" target="_blank" rel="noopener noreferrer" class="resource-card">
+                        <div class="resource-icon">
+                            <i class="fa-solid fa-network-wired"></i>
+                        </div>
+                        <h3>TensorFlow</h3>
+                        <p>Framework pour machine learning</p>
+                        <span class="resource-tag">Gratuit</span>
+                    </a>
+
+                    <a href="https://pytorch.org/" target="_blank" rel="noopener noreferrer" class="resource-card">
+                        <div class="resource-icon">
+                            <i class="fa-solid fa-fire"></i>
+                        </div>
+                        <h3>PyTorch</h3>
+                        <p>Bibliothèque Python pour deep learning</p>
+                        <span class="resource-tag">Gratuit</span>
+                    </a>
+
+                    <a href="https://www.huggingface.co/" target="_blank" rel="noopener noreferrer" class="resource-card">
+                        <div class="resource-icon">
+                            <i class="fa-solid fa-hands-helping"></i>
+                        </div>
+                        <h3>Hugging Face</h3>
+                        <p>Modèles IA pré-entraînés et outils NLP</p>
+                        <span class="resource-tag">Gratuit/Payant</span>
+                    </a>
+                </div>
+            </div>
+
+            <div class="category">
+                <h2><i class="fa-brands fa-youtube"></i> Chaînes YouTube pour l'Apprentissage Universitaire</h2>
+                <div class="resources-grid">
+                    <a href="https://www.youtube.com/@3Blue1Brown" target="_blank" rel="noopener noreferrer" class="resource-card">
+                        <div class="resource-icon">
+                            <i class="fa-brands fa-youtube"></i>
+                        </div>
+                        <h3>3Blue1Brown</h3>
+                        <p>Mathématiques visuelles et intuitives</p>
+                        <span class="resource-tag">Gratuit</span>
+                        <span class="language-tag">🇬🇧 Anglais</span>
+                    </a>
+
+                    <a href="https://www.youtube.com/@CrashCourse" target="_blank" rel="noopener noreferrer" class="resource-card">
+                        <div class="resource-icon">
+                            <i class="fa-brands fa-youtube"></i>
+                        </div>
+                        <h3>Crash Course</h3>
+                        <p>Cours accélérés sur multiples matières</p>
+                        <span class="resource-tag">Gratuit</span>
+                        <span class="language-tag">🇬🇧 Anglais</span>
+                    </a>
+
+                    <a href="https://www.youtube.com/@KhanAcademyFrancais" target="_blank" rel="noopener noreferrer" class="resource-card">
+                        <div class="resource-icon">
+                            <i class="fa-brands fa-youtube"></i>
+                        </div>
+                        <h3>Khan Academy</h3>
+                        <p>Maths, sciences, histoire</p>
+                        <span class="resource-tag">Gratuit</span>
+                        <span class="language-tag">🇫🇷 Français</span>
+                    </a>
+
+                    <a href="https://www.youtube.com/@MITOpenCourseWare" target="_blank" rel="noopener noreferrer" class="resource-card">
+                        <div class="resource-icon">
+                            <i class="fa-brands fa-youtube"></i>
+                        </div>
+                        <h3>MIT OpenCourseWare</h3>
+                        <p>Cours complets du MIT</p>
+                        <span class="resource-tag">Gratuit</span>
+                        <span class="language-tag">🇬🇧 Anglais</span>
+                    </a>
+
+                    <a href="https://www.youtube.com/@Stanford" target="_blank" rel="noopener noreferrer" class="resource-card">
+                        <div class="resource-icon">
+                            <i class="fa-brands fa-youtube"></i>
+                        </div>
+                        <h3>Stanford University</h3>
+                        <p>Cours et conférences de Stanford</p>
+                        <span class="resource-tag">Gratuit</span>
+                        <span class="language-tag">🇬🇧 Anglais</span>
+                    </a>
+
+                    <a href="https://www.youtube.com/@freecodecamp" target="_blank" rel="noopener noreferrer" class="resource-card">
+                        <div class="resource-icon">
+                            <i class="fa-brands fa-youtube"></i>
+                        </div>
+                        <h3>freeCodeCamp</h3>
+                        <p>Tutoriels complets de programmation</p>
+                        <span class="resource-tag">Gratuit</span>
+                        <span class="language-tag">🇬🇧 Anglais</span>
+                    </a>
+
+                    <a href="https://www.youtube.com/@TraversyMedia" target="_blank" rel="noopener noreferrer" class="resource-card">
+                        <div class="resource-icon">
+                            <i class="fa-brands fa-youtube"></i>
+                        </div>
+                        <h3>Traversy Media</h3>
+                        <p>Tutoriels web development pratiques</p>
+                        <span class="resource-tag">Gratuit</span>
+                        <span class="language-tag">🇬🇧 Anglais</span>
+                    </a>
+
+                    <a href="https://www.youtube.com/@StatQuest" target="_blank" rel="noopener noreferrer" class="resource-card">
+                        <div class="resource-icon">
+                            <i class="fa-brands fa-youtube"></i>
+                        </div>
+                        <h3>StatQuest</h3>
+                        <p>Statistiques et machine learning expliqués</p>
+                        <span class="resource-tag">Gratuit</span>
+                        <span class="language-tag">🇬🇧 Anglais</span>
+                    </a>
+
+                    <a href="https://www.youtube.com/@Computerphile" target="_blank" rel="noopener noreferrer" class="resource-card">
+                        <div class="resource-icon">
+                            <i class="fa-brands fa-youtube"></i>
+                        </div>
+                        <h3>Computerphile</h3>
+                        <p>Informatique et concepts avancés</p>
+                        <span class="resource-tag">Gratuit</span>
+                        <span class="language-tag">🇬🇧 Anglais</span>
+                    </a>
+
+                    <a href="https://www.youtube.com/@Veritasium" target="_blank" rel="noopener noreferrer" class="resource-card">
+                        <div class="resource-icon">
+                            <i class="fa-brands fa-youtube"></i>
+                        </div>
+                        <h3>Veritasium</h3>
+                        <p>Sciences et physique expliquées</p>
+                        <span class="resource-tag">Gratuit</span>
+                        <span class="language-tag">🇬🇧 Anglais</span>
+                    </a>
+
+                    <a href="https://www.youtube.com/@Grafikart" target="_blank" rel="noopener noreferrer" class="resource-card">
+                        <div class="resource-icon">
+                            <i class="fa-brands fa-youtube"></i>
+                        </div>
+                        <h3>Grafikart</h3>
+                        <p>Tutoriels web development en français</p>
+                        <span class="resource-tag">Gratuit</span>
+                        <span class="language-tag">🇫🇷 Français</span>
+                    </a>
+
+                    <a href="https://www.youtube.com/@Lachainetech" target="_blank" rel="noopener noreferrer" class="resource-card">
+                        <div class="resource-icon">
+                            <i class="fa-brands fa-youtube"></i>
+                        </div>
+                        <h3>La Chaîne Tech</h3>
+                        <p>Technologie et programmation en français</p>
+                        <span class="resource-tag">Gratuit</span>
+                        <span class="language-tag">🇫🇷 Français</span>
+                    </a>
+
+                    <a href="https://www.youtube.com/@micmaths" target="_blank" rel="noopener noreferrer" class="resource-card">
+                        <div class="resource-icon">
+                            <i class="fa-brands fa-youtube"></i>
+                        </div>
+                        <h3>Micmaths</h3>
+                        <p>Mathématiques ludiques et accessibles</p>
+                        <span class="resource-tag">Gratuit</span>
+                        <span class="language-tag">🇫🇷 Français</span>
+                    </a>
+
+                    <a href="https://www.youtube.com/@ScienceEtonnante" target="_blank" rel="noopener noreferrer" class="resource-card">
+                        <div class="resource-icon">
+                            <i class="fa-brands fa-youtube"></i>
+                        </div>
+                        <h3>Science Étonnante</h3>
+                        <p>Sciences expliquées simplement</p>
+                        <span class="resource-tag">Gratuit</span>
+                        <span class="language-tag">🇫🇷 Français</span>
+                    </a>
+
+                    <a href="https://www.youtube.com/@DirtyBiology" target="_blank" rel="noopener noreferrer" class="resource-card">
+                        <div class="resource-icon">
+                            <i class="fa-brands fa-youtube"></i>
+                        </div>
+                        <h3>DirtyBiology</h3>
+                        <p>Biologie et sciences naturelles</p>
+                        <span class="resource-tag">Gratuit</span>
+                        <span class="language-tag">🇫🇷 Français</span>
+                    </a>
+
+                    <a href="https://www.youtube.com/@LesBonsProfs" target="_blank" rel="noopener noreferrer" class="resource-card">
+                        <div class="resource-icon">
+                            <i class="fa-brands fa-youtube"></i>
+                        </div>
+                        <h3>Les Bons Profs</h3>
+                        <p>Cours complets toutes matières</p>
+                        <span class="resource-tag">Gratuit</span>
+                        <span class="language-tag">🇫🇷 Français</span>
+                    </a>
+                    <a href="https://www.youtube.com/@NetNinja" target="_blank" rel="noopener noreferrer" class="resource-card">
+                        <div class="resource-icon">
+                            <i class="fa-brands fa-youtube"></i>
+                        </div>
+                        <h3>The Net Ninja</h3>
+                        <p>Tutoriels web development détaillés</p>
+                        <span class="resource-tag">Gratuit</span>
+                        <span class="language-tag">🇬🇧 Anglais</span>
+                    </a>
+
+                    <a href="https://www.youtube.com/@Fireship" target="_blank" rel="noopener noreferrer" class="resource-card">
+                        <div class="resource-icon">
+                            <i class="fa-brands fa-youtube"></i>
+                        </div>
+                        <h3>Fireship</h3>
+                        <p>Tech news et tutoriels rapides</p>
+                        <span class="resource-tag">Gratuit</span>
+                        <span class="language-tag">🇬🇧 Anglais</span>
+                    </a>
+
+                    <a href="https://www.youtube.com/@Coreyms" target="_blank" rel="noopener noreferrer" class="resource-card">
+                        <div class="resource-icon">
+                            <i class="fa-brands fa-youtube"></i>
+                        </div>
+                        <h3>Corey Schafer</h3>
+                        <p>Tutoriels Python et développement</p>
+                        <span class="resource-tag">Gratuit</span>
+                        <span class="language-tag">🇬🇧 Anglais</span>
+                    </a>
+                </div>
+            </div>
+
+            <div class="category">
+                <h2><i class="fa-solid fa-file-pdf"></i> Documents PDF et Ressources Académiques</h2>
+                <div class="resources-grid">
+                    <a href="https://www.researchgate.net/" target="_blank" rel="noopener noreferrer" class="resource-card">
+                        <div class="resource-icon">
+                            <i class="fa-solid fa-file-pdf"></i>
+                        </div>
+                        <h3>ResearchGate</h3>
+                        <p>Articles scientifiques et publications académiques</p>
+                        <span class="resource-tag">Gratuit</span>
+                    </a>
+
+                    <a href="https://www.academia.edu/" target="_blank" rel="noopener noreferrer" class="resource-card">
+                        <div class="resource-icon">
+                            <i class="fa-solid fa-graduation-cap"></i>
+                        </div>
+                        <h3>Academia.edu</h3>
+                        <p>Plateforme de partage académique professionnelle</p>
+                        <span class="resource-tag">Gratuit/Payant</span>
+                    </a>
+
+                    <a href="https://scholar.google.com/" target="_blank" rel="noopener noreferrer" class="resource-card">
+                        <div class="resource-icon">
+                            <i class="fa-solid fa-book-open"></i>
+                        </div>
+                        <h3>Google Scholar</h3>
+                        <p>Recherche d'articles scientifiques et académiques</p>
+                        <span class="resource-tag">Gratuit</span>
+                    </a>
+
+                    <a href="https://www.coursera.org/browse" target="_blank" rel="noopener noreferrer" class="resource-card">
+                        <div class="resource-icon">
+                            <i class="fa-solid fa-certificate"></i>
+                        </div>
+                        <h3>Coursera</h3>
+                        <p>Ressources PDF des cours universitaires en ligne</p>
+                        <span class="resource-tag">Gratuit/Payant</span>
+                    </a>
+
+                    <a href="https://www.overleaf.com/" target="_blank" rel="noopener noreferrer" class="resource-card">
+                        <div class="resource-icon">
+                            <i class="fa-solid fa-file-lines"></i>
+                        </div>
+                        <h3>Overleaf</h3>
+                        <p>Éditeur LaTeX collaboratif pour documents académiques</p>
+                        <span class="resource-tag">Gratuit/Payant</span>
+                    </a>
+
+                    <a href="https://arxiv.org/" target="_blank" rel="noopener noreferrer" class="resource-card">
+                        <div class="resource-icon">
+                            <i class="fa-solid fa-atom"></i>
+                        </div>
+                        <h3>arXiv</h3>
+                        <p>Prépublications scientifiques gratuites et vérifiées</p>
+                        <span class="resource-tag">Gratuit</span>
+                    </a>
+
+                    <a href="https://www.jstor.org/" target="_blank" rel="noopener noreferrer" class="resource-card">
+                        <div class="resource-icon">
+                            <i class="fa-solid fa-archive"></i>
+                        </div>
+                        <h3>JSTOR</h3>
+                        <p>Base de données d'articles académiques et revues</p>
+                        <span class="resource-tag">Gratuit/Payant</span>
+                    </a>
+
+                    <a href="https://www.springer.com/" target="_blank" rel="noopener noreferrer" class="resource-card">
+                        <div class="resource-icon">
+                            <i class="fa-solid fa-book"></i>
+                        </div>
+                        <h3>Springer</h3>
+                        <p>Éditeur académique de livres et revues scientifiques</p>
+                        <span class="resource-tag">Gratuit/Payant</span>
+                    </a>
+
+                    <a href="https://www.ieee.org/" target="_blank" rel="noopener noreferrer" class="resource-card">
+                        <div class="resource-icon">
+                            <i class="fa-solid fa-microchip"></i>
+                        </div>
+                        <h3>IEEE Xplore</h3>
+                        <p>Bibliothèque numérique d'articles techniques et scientifiques</p>
+                        <span class="resource-tag">Gratuit/Payant</span>
+                    </a>
+
+                    <a href="https://www.sciencedirect.com/" target="_blank" rel="noopener noreferrer" class="resource-card">
+                        <div class="resource-icon">
+                            <i class="fa-solid fa-flask"></i>
+                        </div>
+                        <h3>ScienceDirect</h3>
+                        <p>Base de données d'articles scientifiques Elsevier</p>
+                        <span class="resource-tag">Gratuit/Payant</span>
+                    </a>
+
+                    <a href="https://www.ncbi.nlm.nih.gov/pmc/" target="_blank" rel="noopener noreferrer" class="resource-card">
+                        <div class="resource-icon">
+                            <i class="fa-solid fa-dna"></i>
+                        </div>
+                        <h3>PubMed Central</h3>
+                        <p>Articles biomédicaux en libre accès</p>
+                        <span class="resource-tag">Gratuit</span>
+                    </a>
+
+                    <a href="https://doaj.org/" target="_blank" rel="noopener noreferrer" class="resource-card">
+                        <div class="resource-icon">
+                            <i class="fa-solid fa-journal-whills"></i>
+                        </div>
+                        <h3>DOAJ</h3>
+                        <p>Directory of Open Access Journals</p>
+                        <span class="resource-tag">Gratuit</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="../JS/outils-etudiant.js" defer></script>
+</body>
+</html>
+

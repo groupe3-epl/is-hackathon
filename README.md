@@ -7,3 +7,9 @@ Petit site vitrine pour un service de protection : des pages HTML unique articul
 4-Jeu de Batonnet
 5-Jeu de Bonneteau
 6- Jeu de quiz
+
+# nom du site : Skilldev
+# A propos de nous 
+# Outils etudiant
+Anglais, créaction de site web et application mobile, utilité des IA et  analyse de donnée
+You tube Grafikart.fr , cursa, 

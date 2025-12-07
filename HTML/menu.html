@@ -3,7 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Menu animé</title>
+    <title>Menu Jeux.One</title>
+    <style>
+        html, body {
+            overflow-x: hidden;
+            max-width: 100vw;
+        }
+    </style>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -31,10 +37,11 @@
             <ul class="nav__links">
                 <span class="nav__indicator" aria-hidden="true"></span>
                 <li><a class="is-active" href="#hero" data-label="Accueil"><i class="fa-solid fa-house"></i> Accueil</a></li>
+                <li><a href="outils-etudiant.html" data-label="Outils Étudiant"><i class="fa-solid fa-graduation-cap"></i> Outils Étudiant</a></li>
                 <li><a href="#services" data-label="Services"><i class="fa-solid fa-shield-halved"></i> Services</a></li>
                 <li><a href="#temoignages" data-label="Témoignages"><i class="fa-solid fa-quote-left"></i> Témoignages</a></li>
-                <li><a href="#contact" data-label="Contact"><i class="fa-solid fa-phone"></i> Contact</a></li>
-                <li><a href="#Helps" class="btn btn--pill" data-label="Démo"><i class="fa-solid fa-play"></i> Démo</a></li>
+                <li><a href="id.html" data-label="ID"><i class="fa-solid fa-id-card"></i> ID</a></li>
+                <li><a href="#Helps" class="btn btn--pill" data-label="Démo"><i class="fa-solid fa-play"></i>Helps</a></li>
             </ul>
         </nav>
 
@@ -47,12 +54,21 @@
             </p>
             <div class="hero__actions">
                 <a href="#services" class="btn btn--primary">Explorer les sections</a>
-                <a href="#contact" class="btn btn--ghost">Nous contacter</a>
             </div>
         </div>
     </header>
 
     <main>
+        <section id="outils-etudiant" class="section tools-preview">
+            <div class="tools-preview__content">
+                <h2 class="tools-preview__title"><i class="fa-solid fa-graduation-cap"></i> Outils Étudiant</h2>
+                <p class="tools-preview__text">Accédez à des ressources d'apprentissage pour la programmation et le développement web</p>
+                <a href="outils-etudiant.html" class="btn btn--primary">
+                    <i class="fa-solid fa-arrow-right"></i> Voir toutes les ressources
+                </a>
+            </div>
+        </section>
+
         <section id="services" class="section games">
             <h2 class="games__title">Nos Jeux Populaires</h2>
             <div class="games__grid">
@@ -149,18 +165,8 @@
         </section>
 
         <section id="temoignages" class="section highlight">
-            <p>“Ce menu nous a permis d’afficher nos jeux. commentaire à venir”</p>
+            <p>"Ce menu nous a permis d'afficher nos jeux. commentaire à venir"</p>
             <span>Groupe IS Hackathon</span>
-        </section>
-
-        <section id="contact" class="section contact">
-            <h2>Parlons de votre prochain projet</h2>
-            <p>Remplissez vos informations et nous vous recontactons en moins de 24h.</p>
-            <form class="contact__form">
-                <input type="text" placeholder="Nom complet">
-                <input type="email" placeholder="Adresse e-mail">
-                <button type="button" class="btn btn--primary">Envoyer</button>
-            </form>
         </section>
     </main>
 
