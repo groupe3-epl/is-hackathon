@@ -23,6 +23,7 @@ const closeMenu = () => {
     }
 };
 
+
 if (toggleButton && navLinks) {
     toggleButton.addEventListener('click', () => {
         toggleButton.classList.toggle('is-open');
@@ -256,6 +257,19 @@ function displayUserInfo() {
         }
     } else {
         console.log('Aucun utilisateur connecté');
+
+        // Proposer à l'utilisateur de créer un compte pour plus d'activités
+        const question = prompt("Voulez-vous creer votre compte pour plus d'activites?:");
+        const answer = question ? question.trim().toLowerCase() : '';
+
+        // Si l'utilisateur répond 'oui' (ou 'o'/'yes'), on le redirige vers la page d'inscription/protection
+        if (answer === 'oui' || answer === 'o' || answer === 'yes') {
+            window.location.href = 'protection.html';
+            return;
+        }
+
+        // Sinon on ne fait rien et on laisse l'utilisateur naviguer
+        return;
     }
 }
 

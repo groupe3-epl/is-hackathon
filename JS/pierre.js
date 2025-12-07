@@ -1,111 +1,111 @@
-// État du jeu
 let gameState = {
     score: 0,
     correctAnswers: 0,
-    isPaused: false,
-    playerName: ""
+    totalGames: 0,
+    playerName: "",
+    gameActive: true
 };
 
-// Initialisation
+const choices = ["pierre", "papier", "ciseaux"];
+
 document.addEventListener('DOMContentLoaded', () => {
     initialize();
 });
 
 function initialize() {
-    const quitBtn = document.getElementById('quitter');
-    const jeu = ["pierre", "papier", "ciseaux"];
-    const name = prompt("Entrez votre nom:").toLowerCase();
+    const playerName = prompt("Entrez votre nom:");
     
-    if (!name) {
-        document.writeln("Nom requis pour jouer!");
+    if (!playerName || playerName.trim() === "") {
+        alert("Nom requis pour jouer!");
+        window.location.href = "../HTML/pierre.html";
         return;
     }
     
-    gameState.playerName = name;
-    
-    if (quitBtn) {
-        quitBtn.addEventListener('click', () => {
-            quitGame();
-        });
-    }
-    
-    playGame(jeu, name);
+    gameState.playerName = playerName.trim();
+    document.getElementById('playerInfo').textContent = `Bienvenue Mr/Mme ${gameState.playerName}!`;
+    updateScore();
 }
 
-function playGame(jeu, name) {
-    let continuer = true;
+function playGame(playerChoice) {
+    if (!gameState.gameActive) return;
     
-    while (continuer) {
-        const gamer = prompt(`Mr/Mme ${name}, Entrez votre choix (pierre/papier/ciseaux):`).toLowerCase();
-        
-        if (!gamer) break;
-        
-        if (!jeu.includes(gamer)) {
-            alert("Faites attention, Reessayez");
-            continue;
-        }
-        
-        const ordi = jeu[Math.floor(Math.random() * jeu.length)];
-        
-        let resultat = determineWinner(gamer, ordi, name);
-        displayResult(resultat, ordi);
-        
-        const rep = prompt("Vous voulez Continuer ou stopper?\n(Écrivez juste 'c' pour poursuivre)").toLowerCase();
-        if (rep !== "c") {
-            alert("Alors, à la prochaine!");
-            continuer = false;
-        }
-    }
+    gameState.gameActive = false;
+    gameState.totalGames++;
+    
+    const computerChoice = choices[Math.floor(Math.random() * choices.length)];
+    const result = determineWinner(playerChoice, computerChoice);
+    
+    displayResult(playerChoice, computerChoice, result);
+    
+    document.getElementById('playAgainBtn').style.display = 'inline-block';
+    document.getElementById('choicesContainer').style.opacity = '0.5';
+    document.querySelectorAll('.choice-btn').forEach(btn => btn.disabled = true);
 }
 
-function determineWinner(gamer, ordi, name) {
-    if (gamer === ordi) {
-        return "Match Nul";
+function determineWinner(player, computer) {
+    if (player === computer) {
+        return { status: 'draw', message: 'Match Nul!' };
     } else if (
-        (gamer === "pierre" && ordi === "ciseaux") ||
-        (gamer === "papier" && ordi === "pierre") ||
-        (gamer === "ciseaux" && ordi === "papier")
+        (player === "pierre" && computer === "ciseaux") ||
+        (player === "papier" && computer === "pierre") ||
+        (player === "ciseaux" && computer === "papier")
     ) {
-        gameState.correctAnswers++;
         gameState.score++;
-        return `Mr/Mme ${name}, Vous avez gagné Bravo!!!`;
+        gameState.correctAnswers++;
+        return { status: 'win', message: `🎉 Mr/Mme ${gameState.playerName}, Vous avez gagné!` };
     } else {
-        return "Perdu!!!!";
+        return { status: 'lose😒', message: '❌ Perdu!' };
     }
 }
 
-function displayResult(message, computerChoice) {
-    alert(`Ordinateur : ${computerChoice}\n${message}`);
-}
-
-function resumeGame() {
-    if (!gameState.isPaused) return;
+function displayResult(playerChoice, computerChoice, result) {
+    const resultArea = document.getElementById('resultArea');
+    const resultMessage = document.getElementById('resultMessage');
     
-    gameState.isPaused = false;
-    const pauseModal = document.getElementById('pause-modal');
-    if (pauseModal) {
-        pauseModal.classList.remove('active');
-    }
+    const choiceEmoji = {
+        'pierre': '🪨',
+        'papier': '📄',
+        'ciseaux': '✂️'
+    };
+    
+    let html = `
+        <div style="display: flex; justify-content: space-around; align-items: center; margin-bottom: 20px;">
+            <div>
+                <p style="font-size: 24px; margin: 0;">${choiceEmoji[playerChoice]}</p>
+                <p style="color: #555;">Votre choix</p>
+            </div>
+            <div style="font-size: 24px; color: #7e7bc1;">VS</div>
+            <div>
+                <p style="font-size: 24px; margin: 0;">${choiceEmoji[computerChoice]}</p>
+                <p style="color: #555;">Ordinateur</p>
+            </div>
+        </div>
+    `;
+    
+    const statusClass = result.status === 'win' ? 'winner' : result.status === 'lose' ? 'loser' : 'draw';
+    html += `<div class="${statusClass}">${result.message}</div>`;
+    
+    resultMessage.innerHTML = html;
+    resultArea.style.display = 'block';
+    
+    updateScore();
+}
+
+function updateScore() {
+    document.getElementById('scoreDisplay').textContent = 
+        `Score: ${gameState.score} / ${gameState.totalGames} parties`;
+}
+
+function resetRound() {
+    gameState.gameActive = true;
+    document.getElementById('resultArea').style.display = 'none';
+    document.getElementById('playAgainBtn').style.display = 'none';
+    document.getElementById('choicesContainer').style.opacity = '1';
+    document.querySelectorAll('.choice-btn').forEach(btn => btn.disabled = false);
 }
 
 function quitGame() {
-    const pauseModal = document.getElementById('pause-modal');
-    const gameScreen = document.getElementById('game-screen');
-    const levelSelection = document.getElementById('level-selection');
-    
-    if (pauseModal) pauseModal.classList.remove('active');
-    if (gameScreen) gameScreen.classList.remove('active');
-    if (levelSelection) levelSelection.classList.add('active');
-    
-    resetGame();
-}
-
-function resetGame() {
-    gameState = {
-        jeu: [],
-        score: 0,
-        correctAnswers: 0,
-        isPaused: false,
-        playerName: ""
-    };
+    if (confirm(`Quitter le jeu? Votre score: ${gameState.score}/${gameState.totalGames}`)) {
+        window.location.href = "../HTML/pierre2.html";
+    }
 }

@@ -1,21 +1,13 @@
-/* ...existing code... */
-:root{
-    --bg-gradient-start: #171a2b;
-    --bg-gradient-mid: #41445b;
-    --bg-gradient-end: #0a0e27;
-    --accent: #7e7bc1;
-    --accent-contrast: #c3caef;
-    --text: #ffffff;
-    --radius: 12px;
-}
-
-*,
-*::before,
-*::after{ box-sizing: border-box; }
-
-body {
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
     font-family: 'Poppins', sans-serif;
-    background-image: url("https://images.pexels.com/photos/5069659/pexels-photo-5069659.jpeg");
+    background-image: url("https://images.unsplash.com/photo-1545048702-79362596cdc9?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
     min-height: 100vh;
     overflow-x: hidden;
     color: var(--text);
@@ -38,26 +30,6 @@ body {
     border-radius: 16px;
     backdrop-filter: blur(6px);
 }
-
-/* Titres et images */
-h4{
-    margin-top: 0;
-    font-size: 2.2rem;
-    color: var(--accent-contrast);
-    margin-bottom: 1rem;
-}
-
-img{
-    margin-top: 20px;
-    border-radius: 15px;
-    max-width: 100%;
-    height: auto;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-
 /* Liens */
 a{
     text-decoration: none;
@@ -99,3 +71,16 @@ button:hover{
     h4 { font-size: 1.6rem; }
     button { width: 100%; padding: 12px; font-size: 1rem; }
 }
+
+    </style>
+</head>
+<body>
+    <div class="content">
+    <p style="color:aliceblue">Alors prêt(e) à découvrir Votre cadeau du jour?</p>
+    <div style="margin-top:1rem;">
+      <a href="https://online.fliphtml5.com/hwkkl/knrl/?1765110657602" class="btn">On y va</a>
+      <button id="quitter" style="margin-left:0.5rem;"><a href="../HTML/menu.html">Quitter</a></button>
+    </div>
+  </div>
+</body>
+</html>
