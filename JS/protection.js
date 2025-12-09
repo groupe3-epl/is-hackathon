@@ -165,6 +165,18 @@ document.addEventListener('DOMContentLoaded', () => {
             };
 
             localStorage.setItem('user', JSON.stringify(userData));
+            
+            // Stocker aussi currentUser pour la compatibilité avec la page ID
+            localStorage.setItem('currentUser', user.username);
+            
+            // Stocker les données utilisateur complètes pour la page ID
+            const fullUserData = {
+                nom: user.nom || user.name || user.username,
+                email: user.email,
+                username: user.username,
+                dateInscription: user.createdAt || new Date().toISOString()
+            };
+            localStorage.setItem(`user_${user.username}`, JSON.stringify(fullUserData));
 
             // Sauvegarder le nom d'utilisateur si "Se souvenir" est coché
             if (rememberCheckbox && rememberCheckbox.checked) {

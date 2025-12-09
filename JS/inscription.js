@@ -303,14 +303,52 @@ document.addEventListener('DOMContentLoaded', () => {
                 loginDate: new Date().toISOString()
             };
             localStorage.setItem('user', JSON.stringify(userData));
+            
+            // Stocker aussi currentUser pour la compatibilité avec la page ID
+            localStorage.setItem('currentUser', result.user.username);
+            
+            // Stocker les données utilisateur complètes pour la page ID
+            const fullUserData = {
+                nom: result.user.nom,
+                email: result.user.email,
+                username: result.user.username,
+                dateInscription: result.user.createdAt || new Date().toISOString()
+            };
+            localStorage.setItem(`user_${result.user.username}`, JSON.stringify(fullUserData));
 
             // Afficher le message de succès
-            successMessage.classList.add('show');
+            if (successMessage) {
+                successMessage.classList.add('show');
+            }
 
-            // Redirection après 2 secondes vers le menu
-            setTimeout(() => {
-                window.location.href = 'menu.html';
-            }, 2000);
+            // Si on est sur la page ID, basculer vers le profil au lieu de rediriger
+            if (window.location.pathname.includes('id.html') || window.location.href.includes('id.html')) {
+                // Masquer le formulaire d'inscription et afficher le profil
+                const signupSection = document.getElementById('signup-section');
+                const profileSection = document.getElementById('profile-section');
+                
+                setTimeout(() => {
+                    if (signupSection) signupSection.style.display = 'none';
+                    if (profileSection) {
+                        profileSection.style.display = 'block';
+                        // Recharger les données utilisateur
+                        if (typeof window.getCurrentUserSync === 'function') {
+                            const user = window.getCurrentUserSync();
+                            if (user && typeof window.displayUserInfo === 'function') {
+                                window.displayUserInfo(user);
+                            }
+                        }
+                    }
+                    if (successMessage) {
+                        successMessage.classList.remove('show');
+                    }
+                }, 2000);
+            } else {
+                // Redirection après 2 secondes vers le menu (ancienne page inscription.html)
+                setTimeout(() => {
+                    window.location.href = 'menu.html';
+                }, 2000);
+            }
 
         } catch (error) {
             console.error('Erreur lors de l\'inscription:', error);
