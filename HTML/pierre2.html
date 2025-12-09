@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pierre Papier Ciseaux</title>
+    <style>
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-image: url("../Photos_principales/back.jpg");
+            background-size: cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        .game-container {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+            max-width: 600px;
+            width: 100%;
+        }
+        
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 30px;
+        }
+        
+        .player-info {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 18px;
+            color: #555;
+        }
+        
+        .choices {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin: 30px 0;
+            flex-wrap: wrap;
+        }
+        
+        .choice-btn {
+            padding: 12px 24px;
+            font-size: 16px;
+            border: 2px solid #7e7bc1;
+            background: white;
+            color: #7e7bc1;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+        }
+        
+        .choice-btn:hover {
+            background: #7e7bc1;
+            color: white;
+            transform: translateY(-2px);
+        }
+        
+        .result-area {
+            background: #f5f5f5;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            min-height: 100px;
+            text-align: center;
+        }
+        
+        .result-message {
+            font-size: 18px;
+            color: #333;
+            margin: 10px 0;
+        }
+        
+        .winner {
+            color: #27ae60;
+            font-weight: bold;
+            font-size: 20px;
+        }
+        
+        .loser {
+            color: #e74c3c;
+            font-weight: bold;
+            font-size: 20px;
+        }
+        
+        .draw {
+            color: #f39c12;
+            font-weight: bold;
+            font-size: 20px;
+        }
+        
+        .score {
+            text-align: center;
+            font-size: 18px;
+            color: #555;
+            margin: 20px 0;
+            font-weight: 600;
+        }
+        
+        .button-group {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        
+        .action-btn {
+            padding: 12px 28px;
+            font-size: 16px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+        }
+        
+        .play-again-btn {
+            background: #7e7bc1;
+            color: white;
+        }
+        
+        .play-again-btn:hover {
+            background: #6f7288;
+        }
+        
+        .quit-btn {
+            background: #e74c3c;
+            color: white;
+        }
+        
+        .quit-btn:hover {
+            background: #c0392b;
+        }
+    </style>
+</head>
+<body>
+    <div class="game-container">
+        <h1> Pierre Papier Ciseaux </h1>
+        
+        <div class="player-info" id="playerInfo"></div>
+        
+        <div class="choices" id="choicesContainer">
+            <button class="choice-btn" onclick="playGame('pierre')"> Pierre</button>
+            <button class="choice-btn" onclick="playGame('papier')"> Papier</button>
+            <button class="choice-btn" onclick="playGame('ciseaux')"> Ciseaux</button>
+        </div>
+        
+        <div class="result-area" id="resultArea" style="display:none;">
+            <div class="result-message" id="resultMessage"></div>
+        </div>
+        
+        <div class="score" id="scoreDisplay"></div>
+        
+        <div class="button-group">
+            <button class="action-btn play-again-btn" onclick="resetRound()" id="playAgainBtn" style="display:none;">Rejouer</button>
+            <button class="action-btn quit-btn" onclick="quitGame()">Quitter</button>
+        </div>
+    </div>
+
+    <script src="../JS/pierre.js" defer></script>
+</body>
+</html>

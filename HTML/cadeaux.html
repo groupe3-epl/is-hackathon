@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+    font-family: 'Poppins', sans-serif;
+    background-image: url("https://images.unsplash.com/photo-1545048702-79362596cdc9?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
+    min-height: 100vh;
+    overflow-x: hidden;
+    color: var(--text);
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+}
+
+/* Conteneur central pour l'UI */
+.content {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    width: 100%;
+    max-width: 980px;
+    padding: 4rem 1.5rem;
+    background: rgba(255,255,255,0.03); /* léger voile si nécessaire */
+    border-radius: 16px;
+    backdrop-filter: blur(6px);
+}
+/* Liens */
+a{
+    text-decoration: none;
+    font-size: 1rem;
+    color: inherit;
+}
+
+/* Boutons — responsive et centré */
+button{
+    margin-top: 1rem;
+    padding: 12px 28px;
+    font-size: 1rem;
+    color: #f9f8f8;
+    background-color: var(--accent);
+    border: none;
+    border-radius: var(--radius);
+    cursor: pointer;
+    transition: background-color .18s ease, transform .12s ease;
+    display: inline-block;
+}
+
+button:hover{
+    background-color: var(--accent-contrast);
+    color: #6f7288;
+    transform: translateY(-3px);
+    text-transform: none;
+}
+
+/* Pause modal / screens (exemples d'état) */
+#game-screen.active,
+#level-selection.active,
+#pause-modal.active{
+    display: block;
+}
+
+/* Responsive */
+@media (max-width: 720px) {
+    .content { padding: 2.5rem 1rem; }
+    h4 { font-size: 1.6rem; }
+    button { width: 100%; padding: 12px; font-size: 1rem; }
+}
+
+    </style>
+</head>
+<body>
+    <div class="content">
+    <p style="color:aliceblue">Alors prêt(e) à découvrir Votre cadeau du jour?</p>
+    <div style="margin-top:1rem;">
+      <a href="https://online.fliphtml5.com/hwkkl/knrl/?1765110657602" class="btn">On y va</a>
+      <button id="quitter" style="margin-left:0.5rem;"><a href="../HTML/menu.html">Quitter</a></button>
+    </div>
+  </div>
+</body>
+</html>
