@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jeu des Bâtonnets</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>🎮 Jeu des Bâtonnet</h1>
+        <p class="subtitle">Évitez d'être le dernier à prendre un bâtonnet !</p>
+
+        <div class="game-settings">
+            <div class="setting-group">
+                <label for="player1Name">Nom du Joueur 1</label>
+                <input type="text" id="player1Name" placeholder="Joueur 1" value="Joueur 1">
+            </div>
+            <div class="setting-group" id="player2NameGroup">
+                <label for="player2Name">Nom du Joueur 2</label>
+                <input type="text" id="player2Name" placeholder="Joueur 2" value="Joueur 2">
+            </div>
+            <div class="setting-group">
+                <label for="totalSticks">Nombre de bâtonnets</label>
+                <input type="number" id="totalSticks" min="10" max="50" value="21">
+            </div>
+            <div class="setting-group">
+                <label for="maxTake">Maximum à prendre</label>
+                <input type="number" id="maxTake" min="1" max="5" value="3">
+            </div>
+            <div class="setting-group">
+                <label for="gameMode">Mode de jeu</label>
+                <select id="gameMode">
+                    <option value="2players">2 Joueurs</option>
+                    <option value="vsAI">Contre l'IA</option>
+                </select>
+            </div>
+        </div>
+
+        <div style="text-align: center; margin-bottom: 20px;">
+            <button class="btn" id="startBtn">Commencer le jeu</button>
+            <button class="btn btn-secondary" id="resetBtn" style="display: none;">Nouveau jeu</button>
+        </div>
+
+        <div id="gameArea" style="display: none;">
+            <div class="game-info">
+                <div class="current-player" id="currentPlayer"></div>
+                <div class="sticks-count" id="sticksCount"></div>
+            </div>
+
+            <div class="sticks-container" id="sticksContainer"></div>
+
+            <div class="controls">
+                <div class="take-buttons" id="takeButtons"></div>
+            </div>
+
+            <div class="message" id="message"></div>
+        </div>
+
+        <div class="stats">
+            <div class="stat">
+                <div class="stat-value" id="player1Wins">0</div>
+                <div class="stat-label" id="player1Label">Joueur 1</div>
+            </div>
+            <div class="stat">
+                <div class="stat-value" id="player2Wins">0</div>
+                <div class="stat-label" id="player2Label">Joueur 2</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Constantes
+        const GAME_MODES = {
+            TWO_PLAYERS: '2players',
+            VS_AI: 'vsAI'
+        };
+
+        const MIN_STICKS = 10;
+        const MAX_STICKS = 50;
+        const MIN_TAKE = 1;
+        const MAX_TAKE = 5;
+        const DEFAULT_STICKS = 21;
+        const DEFAULT_MAX_TAKE = 3;
+        const AI_DELAY = 1000;
+
+        // Classe principale du jeu
+        class StickGame {
+            constructor() {
+                this.state = {
+                    totalSticks: DEFAULT_STICKS,
+                    remainingSticks: DEFAULT_STICKS,
+                    maxTake: DEFAULT_MAX_TAKE,
+                    currentPlayer: 1,
+                    gameMode: GAME_MODES.TWO_PLAYERS,
+                    gameActive: false,
+                    player1Wins: 0,
+                    player2Wins: 0,
+                    player1Name: 'Joueur 1',
+                    player2Name: 'Joueur 2'
+                };
+
+                this.elements = this.initializeElements();
+                this.setupEventListeners();
+                this.togglePlayer2Field();
+            }
+
+            initializeElements() {
+                return {
+                    startBtn: document.getElementById('startBtn'),
+                    resetBtn: document.getElementById('resetBtn'),
+                    gameArea: document.getElementById('gameArea'),
+                    sticksContainer: document.getElementById('sticksContainer'),
+                    takeButtons: document.getElementById('takeButtons'),
+                    currentPlayerDiv: document.getElementById('currentPlayer'),
+                    sticksCountDiv: document.getElementById('sticksCount'),
+                    messageDiv: document.getElementById('message'),
+                    totalSticksInput: document.getElementById('totalSticks'),
+                    maxTakeInput: document.getElementById('maxTake'),
+                    gameModeSelect: document.getElementById('gameMode'),
+                    player1NameInput: document.getElementById('player1Name'),
+                    player2NameInput: document.getElementById('player2Name'),
+                    player2NameGroup: document.getElementById('player2NameGroup'),
+                    player1WinsDiv: document.getElementById('player1Wins'),
+                    player2WinsDiv: document.getElementById('player2Wins'),
+                    player1Label: document.getElementById('player1Label'),
+                    player2Label: document.getElementById('player2Label')
+                };
+            }
+
+            setupEventListeners() {
+                this.elements.startBtn.addEventListener('click', () => this.startGame());
+                this.elements.resetBtn.addEventListener('click', () => this.resetGame());
+                this.elements.gameModeSelect.addEventListener('change', () => this.togglePlayer2Field());
+                
+                // Validation des entrées
+                this.elements.totalSticksInput.addEventListener('change', () => this.validateInput('totalSticks'));
+                this.elements.maxTakeInput.addEventListener('change', () => this.validateInput('maxTake'));
+            }
+
+            validateInput(inputType) {
+                if (this.state.gameActive) return;
+
+                const input = inputType === 'totalSticks' ? this.elements.totalSticksInput : this.elements.maxTakeInput;
+                let value = parseInt(input.value);
+
+                if (inputType === 'totalSticks') {
+                    value = Math.max(MIN_STICKS, Math.min(MAX_STICKS, value));
+                } else {
+                    value = Math.max(MIN_TAKE, Math.min(MAX_TAKE, value));
+                }
+
+                input.value = value;
+            }
+
+            togglePlayer2Field() {
+                const isVsAI = this.elements.gameModeSelect.value === GAME_MODES.VS_AI;
+                this.elements.player2NameGroup.style.display = isVsAI ? 'none' : 'flex';
+            }
+
+            startGame() {
+                // Récupérer et valider les noms
+                this.state.player1Name = this.elements.player1NameInput.value.trim() || 'Joueur 1';
+                this.state.player2Name = this.elements.gameModeSelect.value === GAME_MODES.TWO_PLAYERS
+                    ? (this.elements.player2NameInput.value.trim() || 'Joueur 2')
+                    : 'IA';
+
+                // Récupérer et valider les paramètres
+                this.state.totalSticks = Math.max(MIN_STICKS, Math.min(MAX_STICKS, 
+                    parseInt(this.elements.totalSticksInput.value) || DEFAULT_STICKS));
+                this.state.remainingSticks = this.state.totalSticks;
+                this.state.maxTake = Math.max(MIN_TAKE, Math.min(MAX_TAKE, 
+                    parseInt(this.elements.maxTakeInput.value) || DEFAULT_MAX_TAKE));
+                
+                this.state.currentPlayer = 1;
+                this.state.gameMode = this.elements.gameModeSelect.value;
+                this.state.gameActive = true;
+
+                // Mettre à jour l'interface
+                this.elements.startBtn.style.display = 'none';
+                this.elements.resetBtn.style.display = 'inline-block';
+                this.elements.gameArea.style.display = 'block';
+                this.elements.messageDiv.className = 'message';
+
+                this.updateDisplay();
+                this.renderSticks();
+                this.createTakeButtons();
+                this.updateStats();
+
+                // Démarrer l'IA si nécessaire
+                if (this.state.gameMode === GAME_MODES.VS_AI && this.state.currentPlayer === 2) {
+                    setTimeout(() => this.aiMove(), 500);
+                }
+            }
+
+            resetGame() {
+                this.state.gameActive = false;
+                this.elements.startBtn.style.display = 'inline-block';
+                this.elements.resetBtn.style.display = 'none';
+                this.elements.gameArea.style.display = 'none';
+                this.elements.messageDiv.className = 'message';
+            }
+
+            updateDisplay() {
+                const currentPlayerName = this.getCurrentPlayerName();
+                
+                if (this.state.gameMode === GAME_MODES.VS_AI && this.state.currentPlayer === 2) {
+                    this.elements.currentPlayerDiv.textContent = `${this.state.player2Name} - Réflexion...`;
+                } else {
+                    this.elements.currentPlayerDiv.textContent = `${currentPlayerName} - À vous de jouer !`;
+                }
+                
+                const plural = this.state.remainingSticks > 1 ? 's' : '';
+                this.elements.sticksCountDiv.textContent = 
+                    `${this.state.remainingSticks} bâtonnet${plural} restant${plural}`;
+            }
+
+            getCurrentPlayerName() {
+                return this.state.currentPlayer === 1 ? this.state.player1Name : this.state.player2Name;
+            }
+
+            renderSticks() {
+                this.elements.sticksContainer.innerHTML = '';
+                
+                // Utiliser Array.from pour créer les bâtonnets avec animation
+                const sticks = Array.from({ length: this.state.remainingSticks }, (_, i) => {
+                    const stick = document.createElement('div');
+                    stick.className = 'stick';
+                    stick.style.opacity = '0';
+                    stick.style.transform = 'scale(0)';
+                    return stick;
+                });
+
+                sticks.forEach((stick, index) => {
+                    this.elements.sticksContainer.appendChild(stick);
+                    // Animation d'apparition
+                    setTimeout(() => {
+                        stick.style.transition = 'all 0.3s ease';
+                        stick.style.opacity = '1';
+                        stick.style.transform = 'scale(1)';
+                    }, index * 10);
+                });
+            }
+
+            createTakeButtons() {
+                this.elements.takeButtons.innerHTML = '';
+                const maxCanTake = Math.min(this.state.maxTake, this.state.remainingSticks);
+                
+                // Créer les boutons avec Array.from
+                const buttons = Array.from({ length: maxCanTake }, (_, i) => {
+                    const count = i + 1;
+                    const btn = document.createElement('button');
+                    btn.className = 'btn take-btn';
+                    btn.textContent = count;
+                    btn.addEventListener('click', () => this.takeSticks(count));
+                    return btn;
+                });
+
+                buttons.forEach(btn => this.elements.takeButtons.appendChild(btn));
+            }
+
+            takeSticks(count) {
+                // Validation
+                if (!this.state.gameActive || count > this.state.remainingSticks || count > this.state.maxTake) {
+                    return;
+                }
+
+                this.state.remainingSticks -= count;
+                this.renderSticks();
+
+                // Vérifier les conditions de fin de jeu
+                if (this.state.remainingSticks === 1) {
+                    this.endGame(true); // Le joueur actuel gagne
+                    return;
+                }
+
+                if (this.state.remainingSticks === 0) {
+                    this.endGame(false); // Le joueur actuel perd
+                    return;
+                }
+
+                // Changer de joueur
+                this.state.currentPlayer = this.state.currentPlayer === 1 ? 2 : 1;
+                this.updateDisplay();
+                this.createTakeButtons();
+
+                // Faire jouer l'IA si nécessaire
+                if (this.state.gameMode === GAME_MODES.VS_AI && 
+                    this.state.currentPlayer === 2 && 
+                    this.state.gameActive) {
+                    setTimeout(() => this.aiMove(), AI_DELAY);
+                }
+            }
+
+            aiMove() {
+                if (!this.state.gameActive) return;
+
+                // Stratégie optimale : laisser un multiple de (maxTake + 1) bâtonnets
+                const target = this.state.maxTake + 1;
+                let take = this.state.remainingSticks % target;
+
+                if (take === 0) {
+                    // Si on ne peut pas gagner, prendre aléatoirement
+                    take = Math.min(
+                        Math.floor(Math.random() * this.state.maxTake) + 1, 
+                        this.state.remainingSticks
+                    );
+                }
+
+                this.takeSticks(take);
+            }
+
+            endGame(currentPlayerWins) {
+                this.state.gameActive = false;
+                
+                const winner = currentPlayerWins 
+                    ? this.state.currentPlayer 
+                    : (this.state.currentPlayer === 1 ? 2 : 1);
+                
+                const winnerName = winner === 1 ? this.state.player1Name : this.state.player2Name;
+                
+                // Mettre à jour les statistiques
+                if (winner === 1) {
+                    this.state.player1Wins++;
+                } else {
+                    this.state.player2Wins++;
+                }
+
+                // Afficher le message avec animation
+                this.elements.messageDiv.textContent = `🎉 Félicitations ${winnerName} !`;
+                this.elements.messageDiv.className = 'message winner';
+                
+                // Animation du message
+                this.elements.messageDiv.style.opacity = '0';
+                this.elements.messageDiv.style.transform = 'translateY(-20px)';
+                setTimeout(() => {
+                    this.elements.messageDiv.style.transition = 'all 0.5s ease';
+                    this.elements.messageDiv.style.opacity = '1';
+                    this.elements.messageDiv.style.transform = 'translateY(0)';
+                }, 10);
+
+                this.updateStats();
+                this.elements.takeButtons.innerHTML = '';
+            }
+
+            updateStats() {
+                this.elements.player1WinsDiv.textContent = this.state.player1Wins;
+                this.elements.player2WinsDiv.textContent = this.state.player2Wins;
+                this.elements.player1Label.textContent = this.state.player1Name;
+                this.elements.player2Label.textContent = this.state.player2Name;
+            }
+        }
+
+        // Initialiser le jeu au chargement de la page
+        const game = new StickGame();
+    </script>
+</body>
+</html>
