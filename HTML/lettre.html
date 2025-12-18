@@ -1,32 +1,134 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Jeu De Lettres</title>
     <style>
-        html, body {
-            overflow-x: hidden;
-            max-width: 100vw;
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+       :root{
+    --bg-gradient-start: #171a2b;
+    --bg-gradient-mid: #41445b;
+    --bg-gradient-end: #0a0e27;
+    --accent: #191927;
+    --accent-contrast: #c3caef;
+    --text: #ffffff;
+    --radius: 12px;
+}
+
+*,
+*::before,
+*::after{ box-sizing: border-box; }
+
+body {
+            font-family: 'Poppins', sans-serif;
+            background-image: url("../Photos_principales/back.jpg");
+            background-size: cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
         }
-        a {
-            text-decoration: none;
-            color: inherit;
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
         
-
+        .game-container {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+            max-width: 600px;
+            width: 100%;
+        }
+        
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 30px;
+        }
+        
+        #word {
+            text-align: center;
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+        
+        #guess {
+            display: block;
+            margin: 0 auto 20px;
+            padding: 10px;
+            font-size: 18px;
+            text-align: center;
+            border: 2px solid #222134;
+            border-radius: 8px;
+            width: 200px;
+        }
+        
+        button {
+            display: block;
+            margin: 10px auto;
+            padding: 12px 28px;
+            font-size: 16px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+        }
+        
+        #submitGuess {
+            background: #525073;
+            color: rgb(167, 136, 136);
+        }
+        
+        #submitGuess:hover {
+            background: #6f7288;
+        }
+        
+        #link {
+            background: #27ae60;
+            color: white;
+        }
+        
+        #link:hover {
+            background: #229954;
+        }
+        
+        #quitBtn {
+            background: #61160d;
+            color: white;
+        }
+        
+        #quitBtn:hover {
+            background: #761b10;
+        }
+        
+        #result {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 18px;
+            color: #333;
+        }
     </style>
 </head>
 <body>
-    <header class="hero" id="hero">
-        <nav class="nav" aria-label="Navigation principale">
-            <a href="#">
-                <span>Jeu De Lettres</span>
-            </a>
-
-           
-
-            
-    <script src="../JS/lettre.js"></script>
+    <main>
+    <div class="game-container">
+        <h1> Jeu De lettres </h1>
+        <p id="word"></p>
+        <input type="text" id="guess">
+        <button id="submitGuess">Soumettre</button>
+        <button id="link" onclick="location.reload()" style="display:none;">Rejouer</button>
+        <button id="quitBtn" onclick="window.location.href='../HTML/menu.html'">Quitter</button>
+        <p id="result"></p>
+    </div>
+    </main>
+    <script src="../JS/lettre.js" defer></script>
 </body>
 </html>
