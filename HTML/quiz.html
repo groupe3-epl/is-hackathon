@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Challenge - Testez vos connaissances</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="../CSS/quiz.css">
+</head>
+<body>
+    <!-- Écran de sélection de niveau -->
+    <div id="level-selection" class="screen active">
+        <div class="container">
+            <h1 class="main-title">
+                <i class="fa-solid fa-brain"></i>
+                Quiz Challenge
+            </h1>
+            <p class="subtitle">Choisissez votre niveau de difficulté</p>
+            
+            <div class="levels-grid">
+                <div class="level-card" data-level="easy">
+                    <div class="level-icon">
+                        <i class="fa-solid fa-seedling"></i>
+                    </div>
+                    <h3>Facile</h3>
+                    <p>10 questions • 30 secondes par question</p>
+                    <div class="level-info">
+                        <span><i class="fa-solid fa-clock"></i> 5 min</span>
+                        <span><i class="fa-solid fa-star"></i> 1 point/question</span>
+                    </div>
+                </div>
+                
+                <div class="level-card" data-level="medium">
+                    <div class="level-icon">
+                        <i class="fa-solid fa-fire"></i>
+                    </div>
+                    <h3>Moyen</h3>
+                    <p>15 questions • 20 secondes par question</p>
+                    <div class="level-info">
+                        <span><i class="fa-solid fa-clock"></i> 5 min</span>
+                        <span><i class="fa-solid fa-star"></i> 2 points/question</span>
+                    </div>
+                </div>
+                
+                <div class="level-card" data-level="hard">
+                    <div class="level-icon">
+                        <i class="fa-solid fa-trophy"></i>
+                    </div>
+                    <h3>Difficile</h3>
+                    <p>20 questions • 15 secondes par question</p>
+                    <div class="level-info">
+                        <span><i class="fa-solid fa-clock"></i> 5 min</span>
+                        <span><i class="fa-solid fa-star"></i> 3 points/question</span>
+                    </div>
+                </div>
+            </div>
+            
+            <button class="btn-back" onclick="window.location.href='menu.html'">
+                <i class="fa-solid fa-arrow-right-from-bracket"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- Écran de jeu -->
+    <div id="game-screen" class="screen">
+        <div class="game-header">
+            <div class="header-left">
+                <button class="btn-pause" id="pause-btn">
+                    <i class="fa-solid fa-pause"></i>
+                </button>
+                <div class="level-badge" id="current-level-badge">
+                    <i class="fa-solid fa-fire"></i>
+                    <span>Moyen</span>
+                </div>
+            </div>
+            
+            <div class="header-center">
+                <div class="clock-container">
+                    <div class="clock-face" id="clock-face">
+                        <div class="clock-hand" id="clock-hand"></div>
+                        <div class="clock-center"></div>
+                    </div>
+                    <div class="timer-text" id="timer-text">20</div>
+                </div>
+            </div>
+            
+            <div class="header-right">
+                <div class="score-display">
+                    <i class="fa-solid fa-star"></i>
+                    <span id="current-score">0</span>
+                </div>
+                <div class="progress-info">
+                    <span id="question-number">1</span> / <span id="total-questions">15</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="game-content">
+            <div class="progress-bar-container">
+                <div class="progress-bar" id="progress-bar"></div>
+            </div>
+
+            <div class="question-container">
+                <div class="question-number-badge">
+                    Question <span id="question-num">1</span>
+                </div>
+                <h2 class="question-text" id="question-text">
+                    Chargement de la question...
+                </h2>
+            </div>
+
+            <div class="answers-container" id="answers-container">
+                <!-- Les réponses seront générées dynamiquement -->
+            </div>
+
+            <div class="game-footer">
+                <button class="btn-next" id="next-btn" disabled>
+                    Question suivante
+                    <i class="fa-solid fa-arrow-right"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Écran de résultats -->
+    <div id="results-screen" class="screen">
+        <div class="container">
+            <div class="results-content">
+                <div class="results-icon" id="results-icon">
+                    <i class="fa-solid fa-trophy"></i>
+                </div>
+                <h1 class="results-title" id="results-title">Félicitations !</h1>
+                <p class="results-subtitle" id="results-subtitle">Vous avez terminé le quiz</p>
+                
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fa-solid fa-check-circle"></i>
+                        </div>
+                        <div class="stat-value" id="correct-answers">0</div>
+                        <div class="stat-label">Bonnes réponses</div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fa-solid fa-star"></i>
+                        </div>
+                        <div class="stat-value" id="final-score">0</div>
+                        <div class="stat-label">Score total</div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fa-solid fa-percent"></i>
+                        </div>
+                        <div class="stat-value" id="percentage">0%</div>
+                        <div class="stat-label">Taux de réussite</div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fa-solid fa-clock"></i>
+                        </div>
+                        <div class="stat-value" id="time-taken">0:00</div>
+                        <div class="stat-label">Temps écoulé</div>
+                    </div>
+                </div>
+
+                <div class="results-actions">
+                    <button class="btn-primary" id="play-again-btn">
+                        <i class="fa-solid fa-redo"></i>
+                        Rejouer
+                    </button>
+                    <button class="btn-secondary" id="change-level-btn">
+                        <i class="fa-solid fa-layer-group"></i>
+                        Changer de niveau
+                    </button>
+                    <button class="btn-back" onclick="window.location.href='menu.html'">
+                        <i class="fa-solid fa-home"></i>
+                        Retour au menu
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de pause -->
+    <div id="pause-modal" class="modal">
+        <div class="modal-content">
+            <h2><i class="fa-solid fa-pause"></i> Jeu en pause</h2>
+            <p>Le chronomètre est arrêté. Que souhaitez-vous faire ?</p>
+            <div class="modal-actions">
+                <button class="btn-primary" id="resume-btn">
+                    <i class="fa-solid fa-play"></i>
+                    Reprendre
+                </button>
+                <button class="btn-secondary" id="quit-btn">
+                    <i class="fa-solid fa-sign-out-alt"></i>
+                    Quitter
+                </button>
+            </div>
+        </div>
+    </div>
+    <script src="../JS/quiz.js" defer></script>
+</body>
+</html>
+

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width-device-width, initial-scale=1.0">
+    <title> login from </title>
+    <link rel="stylesheet" href="../CSS/protection.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+    <header class="profile-header">
+        <nav class="nav" aria-label="Navigation principale">
+            <a href="menu.html" class="back-btn">
+                <i class="fa-solid fa-arrow-right-from-bracket"></i>
+            </a>
+        </nav>
+    </header>
+
+    <section>
+        <h1>connection</h1>
+        <form id="login-form">
+            <div class="input-box">
+                <input type="text" id="username" name="username" placeholder="Nom d'utilisateur" required>
+                <i class="fa-solid fa-user"></i>
+                <span class="error-message"></span>
+            </div>
+            <div class="input-box">
+                <input type="password" id="password" name="password" placeholder="Mot de passe" required>
+                <i class="fa-solid fa-lock"></i>
+                <button type="button" class="toggle-password" aria-label="Afficher le mot de passe">
+                    <i class="fa-solid fa-eye"></i>
+                </button>
+                <span class="error-message"></span>
+            </div>
+            <div class="remenber-forget">
+                <label><input type="checkbox" id="remember"> Se souvenir de moi</label>
+                <a href="#" id="forgot-password-link">Mot de passe oublié ?</a>
+            </div>
+            <button type="submit" class="login-btn">
+                <span class="btn-text">Se connecter</span>
+                <span class="btn-loader" aria-hidden="true"></span>
+            </button>
+        </form>
+        <div class="registrer-link">
+            <p> Pas de compte ? <a href="inscription.html">Inscription</a></p>  
+        </div>
+        <div id="error-message" class="error-message-global" role="alert" aria-live="polite"></div>
+    </section>
+
+    <!-- Modal Mot de passe oublié -->
+    <div id="forgot-password-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Mot de passe oublié</h2>
+                <button class="modal-close" id="close-modal" aria-label="Fermer">
+                    <i class="fa-solid fa-times"></i>
+                </button>
+            </div>
+            <form id="forgot-password-form">
+                <div class="modal-step" id="step-1">
+                    <p class="modal-description">Entrez votre nom d'utilisateur ou votre email pour réinitialiser votre mot de passe.</p>
+                    <div class="input-box">
+                        <input type="text" id="forgot-identifier" name="identifier" placeholder="Nom d'utilisateur ou email" required>
+                        <i class="fa-solid fa-user"></i>
+                        <span class="error-message"></span>
+                    </div>
+                    <button type="submit" class="login-btn">
+                        <span class="btn-text">Vérifier</span>
+                        <span class="btn-loader" aria-hidden="true"></span>
+                    </button>
+                </div>
+                <div class="modal-step" id="step-2" style="display: none;">
+                    <p class="modal-description">Entrez votre nouveau mot de passe.</p>
+                    <div class="input-box">
+                        <input type="password" id="new-password" name="new-password" placeholder="Nouveau mot de passe" required>
+                        <i class="fa-solid fa-lock"></i>
+                        <button type="button" class="toggle-password" aria-label="Afficher le mot de passe">
+                            <i class="fa-solid fa-eye"></i>
+                        </button>
+                        <span class="error-message"></span>
+                    </div>
+                    <div class="input-box">
+                        <input type="password" id="confirm-password" name="confirm-password" placeholder="Confirmer le mot de passe" required>
+                        <i class="fa-solid fa-lock"></i>
+                        <button type="button" class="toggle-password" aria-label="Afficher le mot de passe">
+                            <i class="fa-solid fa-eye"></i>
+                        </button>
+                        <span class="error-message"></span>
+                    </div>
+                    <button type="submit" class="login-btn">
+                        <span class="btn-text">Réinitialiser le mot de passe</span>
+                        <span class="btn-loader" aria-hidden="true"></span>
+                    </button>
+                </div>
+                <div id="forgot-error-message" class="error-message-global" role="alert" aria-live="polite"></div>
+            </form>
+        </div>
+    </div>
+
+    <script src="../JS/database.js"></script>
+    <script src="../JS/protection.js" defer></script>
+</body>
+</html>

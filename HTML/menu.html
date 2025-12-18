@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu SkillDev</title>
+    <style>
+        html, body {
+            overflow-x: hidden;
+            max-width: 100vw;
+        }
+    </style>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="../CSS/menu.css">
+</head>
+<body>
+    <div class="scene">
+        <div class="scene__glow"></div>
+        <div class="scene__grid"></div>
+    </div>
+
+    <header class="hero" id="hero">
+        <nav class="nav" aria-label="Navigation principale">
+            <a class="nav__logo" href="#">
+                <span>SkillDev</span>
+            </a>
+
+            <button class="nav__toggle" aria-label="Ouvrir le menu" aria-expanded="false">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <ul class="nav__links">
+                <span class="nav__indicator" aria-hidden="true"></span>
+                <li><a class="is-active" href="#hero" data-label="Accueil"><i class="fa-solid fa-house"></i> Accueil</a></li>
+                <li><a href="outils-etudiant.html" data-label="Outils Étudiant"><i class="fa-solid fa-graduation-cap"></i> Outils Étudiant</a></li>
+                <li><a href="#services" data-label="Jeux"><i class="fa-solid fa-shield-halved"></i>Jeux</a></li>
+                <li><a href="cadeaux.html" data-label="Cadeaux"><i class="fa-regular fa-tree"></i> Cadeaux</a></li>
+                <li><a href="id.html" data-label="ID"><i class="fa-solid fa-id-card"></i> ID</a></li>
+                <li><a href="helps.html" class="btn btn--pill" data-label="Démo"><i class="fa-solid fa-play"></i>Helps</a></li>
+            </ul>
+        </nav>
+
+        <div class="hero__content">
+            <p class="hero__eyebrow">Jeux immersifs et Educatives</p>
+            <h1>Bienvenue sur SkillDev </h1>
+            <p class="hero__text">
+                Découvrez notre sélection de jeux éducatifs conçus pour stimuler votre esprit tout en vous amusant. Que vous soyez passionné par les quiz, les jeux de réflexion ou les défis rapides,
+                nous avons quelque chose pour chaque type de joueur. Plongez dans un univers ludique où l'apprentissage rencontre le divertissement !
+            </p>
+            <div class="hero__actions">
+                <a href="#services" class="btn btn--primary">Explorer les sections</a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section id="outils-etudiant" class="section tools-preview">
+            <div class="tools-preview__content">
+                <h2 class="tools-preview__title"><i class="fa-solid fa-graduation-cap"></i> Outils Étudiant</h2>
+                <p class="tools-preview__text">Accédez à des ressources d'apprentissage dans tous les domaines</p>
+                <a href="outils-etudiant.html" class="btn btn--primary">
+                    <i class="fa-solid fa-arrow-right"></i> Voir toutes les ressources
+                </a>
+            </div>
+        </section>
+
+        <section id="services" class="section games">
+            <h2 class="games__title">Jeux Populaires</h2>
+            <div class="games__grid">
+                <article class="game-card">
+                    <div class="game-card__image">
+                        <img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=400&h=600&fit=crop" alt="Quiz Challenge">
+                        <div class="game-card__overlay">
+                            <span class="game-card__rating">4.9 <i class="fa-solid fa-star"></i></span>
+                            <a href="quiz.html" class="game-card__play"><i class="fa-solid fa-play"></i></a>
+                        </div>
+                    </div>
+                    <div class="game-card__content">
+                        <h3>Quiz Challenge</h3>
+                        <p>Quiz • Connaissances</p>
+                        <div class="game-card__tags">
+                            <span>Éducatif</span>
+                            <span>3 Niveaux</span>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="game-card">
+                    <div class="game-card__image">
+                        <img src="https://images.unsplash.com/photo-1511512578047-dfb367046420?w=400&h=600&fit=crop" alt="Jeu de Tasse">
+                        <div class="game-card__overlay">
+                            <span class="game-card__rating">4.8 <i class="fa-solid fa-star"></i></span>
+                            <a href="tasse.html" class="game-card__play"><i class="fa-solid fa-play"></i></a>
+                        </div>
+                    </div>
+                    <div class="game-card__content">
+                        <h3>Jeu de Tasse</h3>
+                        <p>Réflexe • Observation</p>
+                        <div class="game-card__tags">
+                            <span>Classique</span>
+                            <span>Rapide</span>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="game-card">
+                    <div class="game-card__image">
+                        <img src="https://images.unsplash.com/photo-1493711662062-fa541adb3fc8?w=400&h=600&fit=crop" alt="Jeu de stratégie">
+                        <div class="game-card__overlay">
+                            <span class="game-card__rating">4.7 <i class="fa-solid fa-star"></i></span>
+                            <button class="game-card__play"><i class="fa-solid fa-play"></i></button>
+                        </div>
+                    </div>
+                    <div class="game-card__content">
+                        <h3>Jeu de Lettres</h3>
+                        <p>Education • Réflexion</p>
+                        <div class="game-card__tags">
+                            <span>Stratégie</span>
+                            <span>Education</span>
+                        </div>
+                    </div>
+                </article>
+
+                
+
+                <article class="game-card">
+                    <div class="game-card__image">
+                        <img src="https://media.istockphoto.com/id/975999676/photo/rock-paper-scissors.jpg?s=1024x1024&w=is&k=20&c=_GnKQ80H_L-EbAofK6SfaPuhX2V4bPCBplF1Hv6Z_G4=" alt="Jeu de distraction">
+                        <div class="game-card__overlay">
+                            <span class="game-card__rating">4.6 <i class="fa-solid fa-star"></i></span>
+                            <a href="pierre.html" class="game-card__play"><i class="fa-solid fa-play"></i></a>
+                        </div>
+                    </div>
+                <div class="game-card__content">
+                        <h3>Pierre_papier_ciseaux</h3>
+                        <p>Education • Distraction</p>
+                        <div class="game-card__tags">
+                            <span>Stratégie</span>
+                            <span>Education</span>
+                        </div>
+            
+                </div>
+                </article>
+            </div>
+        </section>
+
+        <section id="temoignages" class="section highlight">
+          
+           
+            <span>Groupe IS Hackathon Ecole Polytechnique de Lomé</span>
+
+           
+        </section>
+    </main>
+
+    <script src="../JS/menu.js" defer></script>
+</body>
+</html>
+

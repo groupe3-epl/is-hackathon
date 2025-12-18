@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Helps — SkillDev</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="../CSS/helps.css">
+</head>
+<body>
+    <div class="scene" aria-hidden="true">
+        <div class="scene__glow"></div>
+        <div class="scene__grid"></div>
+    </div>
+
+    <header class="page-header">
+        <a class="back-link" href="menu.html">
+            <i class="fa-solid fa-arrow-left"></i>
+            Retour au menu
+        </a>
+
+        <div class="page-title">
+            
+            <h1>Helps</h1>
+            <p>Votre assistant virtuel pour une expérience SkillDev optimale</p>
+        </div>
+    </header>
+
+    <main class="page-content">
+        <section class="help" aria-label="Assistant">
+            <div class="help__card" role="region" aria-label="Chat d'assistance">
+                <div class="help__top" aria-label="En-tête">
+                    <div class="help__top-left">
+                        <div class="help__badge" aria-hidden="true"><i class="fa-solid fa-hands-helping"></i></div>
+                        <div>
+                            <div class="help__top-title">Assistant SkillDev</div>
+                            <div class="help__top-subtitle">Questions sur les jeux, cadeaux, ID et outils étudiant</div>
+                        </div>
+                    </div>
+                    <div class="help__top-right">
+                        <div class="help__actions">
+                            <span class="help__status"><span class="help__dot" aria-hidden="true"></span> Auto</span>
+                            <button type="button" class="icon-btn" id="help-clear" title="Effacer la conversation" aria-label="Effacer la conversation">
+                                <i class="fa-solid fa-trash"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="help__messages" id="help-messages" aria-live="polite"></div>
+
+                <div class="help__chips" id="help-chips" aria-label="Questions suggérées">
+                    <button type="button" class="help-chip" data-question="Comment jouer au quiz ?">Quiz</button>
+                    <button type="button" class="help-chip" data-question="Comment jouer au jeu de tasse ?">Jeu de Tasse</button>
+                    <button type="button" class="help-chip" data-question="C'est quoi la page Cadeaux ?">Cadeaux</button>
+                    <button type="button" class="help-chip" data-question="A quoi sert la page ID ?">ID</button>
+                    <button type="button" class="help-chip" data-question="Où trouver les outils étudiant ?">Outils étudiant</button>
+                </div>
+
+                <form class="help__form" id="help-form" autocomplete="off">
+                    <label class="sr-only" for="help-input">Votre question</label>
+                    <input
+                        id="help-input"
+                        type="text"
+                        placeholder="Ex: Comment jouer au Jeu de Tasse ?"
+                        inputmode="text"
+                        required
+                    />
+                    <button class="btn" type="submit">
+                        <i class="fa-solid fa-paper-plane"></i>
+                        Envoyer
+                    </button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <script src="../JS/helps.js" defer></script>
+</body>
+</html>
