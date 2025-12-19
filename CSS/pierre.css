@@ -1,0 +1,123 @@
+/* ...existing code... */
+:root{
+    --bg-gradient-start: #171a2b;
+    --bg-gradient-mid: #41445b;
+    --bg-gradient-end: #0a0e27;
+    --accent: #7e7bc1;
+    --accent-contrast: #c3caef;
+    --text: #ffffff;
+    --radius: 12px;
+}
+
+*,
+*::before,
+*::after{ box-sizing: border-box; }
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-image: url("https://images.pexels.com/photos/5069659/pexels-photo-5069659.jpeg");
+    min-height: 100vh;
+    overflow-x: hidden;
+    color: var(--text);
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+}
+
+/* Conteneur central pour l'UI */
+.content {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    width: 100%;
+    max-width: 980px;
+    padding: 4rem 1.5rem;
+    background: rgba(255,255,255,0.03); /* léger voile si nécessaire */
+    border-radius: 16px;
+    backdrop-filter: blur(6px);
+}
+
+/* Titres et images */
+h4{
+    margin-top: 0;
+    font-size: 2.2rem;
+    color: var(--accent-contrast);
+    margin-bottom: 1rem;
+}
+
+img{
+    margin-top: 20px;
+    border-radius: 15px;
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+/* Liens */
+a{
+    text-decoration: none;
+    font-size: 1rem;
+    color: inherit;
+}
+
+/* Boutons — responsive et centré */
+button{
+    margin-top: 1rem;
+    padding: 12px 28px;
+    font-size: 1rem;
+    color: #f9f8f8;
+    background-color: var(--accent);
+    border: none;
+    border-radius: var(--radius);
+    cursor: pointer;
+    transition: background-color .18s ease, transform .12s ease;
+    display: inline-block;
+}
+
+button:hover{
+    background-color: var(--accent-contrast);
+    color: #6f7288;
+    transform: translateY(-3px);
+    text-transform: none;
+}
+
+/* Pause modal / screens (exemples d'état) */
+#game-screen.active,
+#level-selection.active,
+#pause-modal.active{
+    display: block;
+}
+
+/* Responsive */
+@media (max-width: 720px) {
+    .content { padding: 2.5rem 1rem; }
+    h4 { font-size: 1.6rem; }
+    button { width: 100%; padding: 12px; font-size: 1rem; }
+}
+
+/* Bouton Retour */
+.btn-back {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 20px;
+    color: var(--text);
+    text-decoration: none;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    font-size: 14px;
+    background: rgba(255, 255, 255, 0.05);
+    cursor: pointer;
+}
+
+.btn-back:hover {
+    background: rgba(126, 123, 193, 0.2);
+    border-color: var(--accent);
+    transform: translateX(-2px);
+}

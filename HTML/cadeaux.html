@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        html, body {
+            height: 100%;
+        }
+
+        *, *::before, *::after {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            /* Utiliser une image locale comme arrière-plan */
+            background-image: url("../Photos_principales/cadeauImage1.jpg");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            min-height: 100vh;
+            overflow: hidden; /* éviter le scroll causé par le diaporama/padding */
+            color: var(--text);
+            margin: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+/* Conteneur central pour l'UI */
+.content {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    width: 100%;
+    max-width: 980px;
+    padding: 4rem 1.5rem;
+    background: rgba(255,255,255,0.03); /* léger voile si nécessaire */
+    border-radius: 16px;
+    backdrop-filter: blur(6px);
+}
+/* Liens */
+a{
+    text-decoration: none;
+    font-size: 1rem;
+    color: inherit;
+}
+
+/* Boutons — responsive et centré */
+button{
+    margin-top: 1rem;
+    padding: 12px 28px;
+    font-size: 1rem;
+    color: #f9f8f8;
+    background-color: var(--accent);
+    border: none;
+    border-radius: var(--radius);
+    cursor: pointer;
+    transition: background-color .18s ease, transform .12s ease;
+    display: inline-block;
+}
+
+button:hover{
+    background-color: var(--accent-contrast);
+    color: #6f7288;
+    transform: translateY(-3px);
+    text-transform: none;
+}
+
+/* Pause modal / screens (exemples d'état) */
+#game-screen.active,
+#level-selection.active,
+#pause-modal.active{
+    display: block;
+}
+
+/* Responsive */
+@media (max-width: 720px) {
+    .content { padding: 2.5rem 1rem; }
+    h4 { font-size: 1.6rem; }
+    button { width: 100%; padding: 12px; font-size: 1rem; }
+}
+
+/* Bouton Retour */
+.btn-back {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 20px;
+    color: #f9f8f8;
+    text-decoration: none;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    font-size: 14px;
+    background: rgba(255, 255, 255, 0.05);
+    cursor: pointer;
+    margin-left: 0.5rem;
+}
+
+.btn-back:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: #f9f8f8;
+    transform: translateX(-2px);
+}
+
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+        <!-- Diaporama en arrière-plan (placé en dehors de .content pour rester strictement derrière) -->
+        <div class="gift-slideshow" id="gift-slideshow" aria-label="Cadeaux de Noël">
+            <!-- Les slides sont injectés en JS (local + Internet) -->
+            <div class="gift-overlay">
+                <h2 id="gift-greeting" aria-live="polite">Joyeux Noël !</h2>
+            </div>
+        </div>
+
+        <div class="content" id="main-content">
+            <p class="intro">Alors prêt(e) à découvrir Votre cadeau du jour?</p>
+
+            <div style="margin-top:1rem; display:flex; gap:12px; justify-content:center;">
+                <a id="gift-go-link" href="https://online.fliphtml5.com/hwkkl/knrl/?1765110657602" class="btn">On y va</a>
+                <a href="../HTML/menu.html" class="btn-back"><i class="fa-solid fa-arrow-left"></i> Retour</a>
+            </div>
+        </div>
+
+        <!-- Modal vidéo : affiché après clic sur "On y va" -->
+        <div class="video-modal" id="gift-video-modal" aria-hidden="true">
+            <div class="video-modal__backdrop" data-close="true"></div>
+            <div class="video-modal__dialog" role="dialog" aria-label="Vidéo de Noël" aria-modal="true">
+                <button class="video-modal__close" type="button" aria-label="Fermer" title="Fermer" data-close="true">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+
+                <video id="gift-video" class="video-modal__video" controls playsinline preload="metadata">
+                    <source src="../Photos_principales/joyeux-noel.mp4" type="video/mp4" />
+                </video>
+
+                <div class="video-modal__actions">
+                    <button class="btn" type="button" data-close="true">Fermer</button>
+                </div>
+            </div>
+        </div>
+
+    <script>
+        // Diaporama de fond (local + Internet) + messages de souhaits
+        (function () {
+            const slideshow = document.getElementById('gift-slideshow');
+            if (!slideshow) return;
+
+            const overlay = slideshow.querySelector('.gift-overlay');
+            const greetingEl = document.getElementById('gift-greeting');
+
+            // Tu peux ajouter/retirer des URLs ici.
+            // Note: les URLs Internet sont chargées via https.
+            const BACKGROUND_IMAGES = [
+                // Local (Photos_principales)
+                '../Photos_principales/cadeauImage1.jpg',
+                '../Photos_principales/cadeauImage2.jpg',
+                '../Photos_principales/cadeauImage3.jpg',
+                '../Photos_principales/cadeauImage4.jpg',
+                '../Photos_principales/cadeauImage5.jpg',
+                '../Photos_principales/cadeauImage6.jpg',
+                '../Photos_principales/cadeauImage7.jpg',
+                '../Photos_principales/cadeauImage8.jpg',
+                // Internet (images dynamiques) — remplaçables par des liens fixes si besoin
+                'https://source.unsplash.com/1600x900/?christmas',
+                'https://source.unsplash.com/1600x900/?christmas,gift',
+                'https://source.unsplash.com/1600x900/?christmas,snow',
+                'https://source.unsplash.com/1600x900/?christmas,night',
+            ];
+
+            const GREETINGS = [
+                'Joyeux Noël !',
+                'Meilleurs vœux ✨',
+                'Bonne fête !',
+                'Paix & joie 🎄',
+                'Bonne année à l’avance 🎆'
+            ];
+
+            const slides = [];
+            const addSlide = (src, i) => {
+                const img = document.createElement('img');
+                img.src = src;
+                img.alt = `Cadeau ${i + 1}`;
+                img.className = 'gift-slide' + (i === 0 ? ' active' : '');
+                img.loading = 'eager';
+                // Important: insérer sous l'overlay
+                if (overlay) {
+                    slideshow.insertBefore(img, overlay);
+                } else {
+                    slideshow.appendChild(img);
+                }
+                slides.push(img);
+            };
+
+            BACKGROUND_IMAGES.forEach(addSlide);
+            if (slides.length === 0) return;
+
+            let idx = 0;
+            const total = slides.length;
+            const intervalMs = 3500;
+
+            const show = (i) => {
+                slides.forEach(s => s.classList.remove('active'));
+                slides[i].classList.add('active');
+                if (greetingEl) {
+                    greetingEl.textContent = GREETINGS[i % GREETINGS.length];
+                }
+            };
+
+            // Pré-charger (best-effort)
+            BACKGROUND_IMAGES.forEach((src) => {
+                const preload = new Image();
+                preload.src = src;
+            });
+
+            show(0);
+            setInterval(() => {
+                idx = (idx + 1) % total;
+                show(idx);
+            }, intervalMs);
+        })();
+
+        // Vidéo : clic sur "On y va" => modal + lecture => redirection à la fin
+        (function () {
+            const goLink = document.getElementById('gift-go-link');
+            const modal = document.getElementById('gift-video-modal');
+            const video = document.getElementById('gift-video');
+            if (!goLink || !modal || !video) return;
+
+            const openModal = () => {
+                modal.classList.add('active');
+                modal.setAttribute('aria-hidden', 'false');
+                try {
+                    video.currentTime = 0;
+                } catch {}
+                const p = video.play();
+                if (p && typeof p.catch === 'function') p.catch(() => {});
+            };
+
+            const closeModal = () => {
+                modal.classList.remove('active');
+                modal.setAttribute('aria-hidden', 'true');
+                try {
+                    video.pause();
+                } catch {}
+            };
+
+            goLink.addEventListener('click', (e) => {
+                e.preventDefault();
+                openModal();
+            });
+
+            video.addEventListener('ended', () => closeModal());
+
+            modal.querySelectorAll('[data-close="true"]').forEach((el) => {
+                el.addEventListener('click', () => closeModal());
+            });
+
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && modal.classList.contains('active')) {
+                    closeModal();
+                }
+            });
+        })();
+
+        // Animation d'arrivée pour le contenu principal
+        document.addEventListener('DOMContentLoaded', function(){
+            const main = document.getElementById('main-content');
+            if (main) {
+                main.classList.add('enter');
+            }
+        });
+    </script>
+
+    <style>
+        /* Styles spécifiques à la zone cadeaux : diaporama en arrière-plan */
+        /* Plein écran, sans forcer le scroll */
+        .gift-slideshow {
+            position: fixed;
+            inset: 0;
+            width: 100%;
+            height: 100vh;
+            border-radius: 0;
+            overflow: hidden;
+            z-index: 0;
+        }
+
+        .gift-slide { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transform: scale(1.02); transition: opacity .6s ease, transform .6s ease; }
+        .gift-slide.active { opacity: 1; transform: scale(1); }
+
+        .gift-overlay { position: absolute; inset: 0; display:flex; align-items:flex-end; justify-content:center; padding:18px; background: linear-gradient(180deg, rgba(0,0,0,0) 40%, rgba(0,0,0,0.45)); pointer-events: none; }
+        .gift-overlay h2 { color: #fff; font-size: 2.2rem; letter-spacing: 1px; margin: 0; text-shadow: 0 4px 18px rgba(0,0,0,0.6); }
+
+        /* Amélioration de l'apparence du texte et des boutons */
+        .intro { color: #fff; font-size: 1.25rem; margin: 0 0 6px; letter-spacing: 0.2px; text-shadow: 0 6px 18px rgba(0,0,0,0.55); }
+
+        /* Texte principal superposé (Joyeux Noël) */
+        #gift-greeting {
+            font-family: 'Poppins', 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            font-size: 3rem;
+            margin: 0;
+            background: linear-gradient(90deg, #FFD700 0%, #FF7A18 50%, #FF0066 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 6px 25px rgba(0,0,0,0.6);
+        }
+
+        /* Boutons style moderne pour l'action cadeau */
+        .btn {
+            display: inline-block;
+            padding: 12px 26px;
+            border-radius: 999px;
+            background: linear-gradient(135deg, rgba(255,124,0,0.95), rgba(255,196,0,0.95));
+            color: #111827;
+            font-weight: 700;
+            box-shadow: 0 10px 30px rgba(255,160,60,0.18), 0 2px 6px rgba(0,0,0,0.25);
+            border: none;
+            text-decoration: none;
+            transition: transform .18s ease, box-shadow .18s ease, opacity .12s ease;
+        }
+
+        .btn:hover, .btn:focus {
+            transform: translateY(-4px);
+            box-shadow: 0 18px 40px rgba(255,160,60,0.22), 0 6px 12px rgba(0,0,0,0.25);
+            opacity: 0.98;
+        }
+
+        /* Bouton retour plus discret mais assorti */
+        .btn-back {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            color: #fff;
+            background: rgba(255,255,255,0.08);
+            border-radius: 12px;
+            border: 1px solid rgba(255,255,255,0.12);
+            text-decoration: none;
+            transition: all .18s ease;
+        }
+
+        .btn-back:hover { transform: translateY(-3px); background: rgba(255,255,255,0.12); }
+
+        @media (max-width:720px){ #gift-greeting{ font-size:1.6rem } .intro{ font-size:1rem } }
+
+        /* Le contenu principal reste fixé et visible par-dessus le diaporama */
+        .content { position: fixed; z-index: 2; left: 50%; top: 50%; transform: translate(-50%, -50%); max-width: 980px; width: calc(100% - 3rem); }
+
+        /* Animation d'arrivée : fade + translate */
+        .content.enter { animation: contentEnter .75s cubic-bezier(.22,.9,.3,1) both; }
+        @keyframes contentEnter {
+            from { opacity: 0; transform: translate(-50%, -44%) scale(.995); }
+            to   { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+        }
+
+        @media (max-width:720px){ .gift-slideshow{ height: 100vh; } .gift-overlay h2{ font-size:1.3rem; } }
+
+        /* Modal vidéo */
+        .video-modal {
+            position: fixed;
+            inset: 0;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 50;
+        }
+
+        .video-modal.active {
+            display: flex;
+        }
+
+        .video-modal__backdrop {
+            position: absolute;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.65);
+            backdrop-filter: blur(6px);
+        }
+
+        .video-modal__dialog {
+            position: relative;
+            width: min(920px, calc(100% - 24px));
+            border-radius: 18px;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            background: rgba(10, 12, 24, 0.85);
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.55);
+            padding: 14px;
+            z-index: 1;
+        }
+
+        .video-modal__close {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            width: 40px;
+            height: 40px;
+            border-radius: 999px;
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            background: rgba(255, 255, 255, 0.06);
+            color: #fff;
+            cursor: pointer;
+            display: grid;
+            place-items: center;
+        }
+
+        .video-modal__video {
+            width: 100%;
+            max-height: min(70vh, 520px);
+            border-radius: 14px;
+            background: #000;
+        }
+
+        .video-modal__actions {
+            margin-top: 12px;
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        @media (max-width: 720px) {
+            .video-modal__dialog {
+                padding: 12px;
+            }
+
+            .video-modal__video {
+                max-height: 55vh;
+            }
+        }
+    </style>
+</body>
+</html>

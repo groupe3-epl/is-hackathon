@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Identité - SkillDev</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="../CSS/id.css">
+    <link rel="stylesheet" href="../CSS/inscription.css">
+</head>
+<body>
+    <div class="scene">
+        <div class="scene__glow"></div>
+        <div class="scene__grid"></div>
+    </div>
+
+    <header class="profile-header">
+        <nav class="nav" aria-label="Navigation principale">
+            <a class="nav__logo" href="menu.html">
+                <span>SkillDev</span>
+            </a>
+            <a href="menu.html" class="back-btn">
+                <i class="fa-solid fa-arrow-right-from-bracket"></i>
+            </a>
+        </nav>
+    </header>
+
+    <main class="profile-container">
+        <!-- Section Inscription (affichée si non connecté) -->
+        <section id="signup-section" class="signup-section" style="display: none;">
+            <div class="signup-container">
+                <div class="signup-header">
+                    <h1>Créer un compte</h1>
+                    <p>Rejoignez-nous dès aujourd'hui</p>
+                </div>
+
+                <form id="signup-form" class="signup-form">
+                    <div class="input-box">
+                        <input type="text" id="nom" name="nom" placeholder="Nom complet" required>
+                        <i class="fa-solid fa-user"></i>
+                        <span class="error-message"></span>
+                    </div>
+
+                    <div class="input-box">
+                        <input type="email" id="email" name="email" placeholder="Adresse e-mail" required>
+                        <i class="fa-solid fa-envelope"></i>
+                        <span class="error-message"></span>
+                    </div>
+
+                    <div class="input-box">
+                        <input type="text" id="username" name="username" placeholder="Nom d'utilisateur" required>
+                        <i class="fa-solid fa-at"></i>
+                        <span class="error-message"></span>
+                    </div>
+
+                    <div class="input-box">
+                        <input type="password" id="password" name="password" placeholder="Mot de passe" required>
+                        <i class="fa-solid fa-lock"></i>
+                        <button type="button" class="toggle-password" aria-label="Afficher le mot de passe">
+                            <i class="fa-solid fa-eye"></i>
+                        </button>
+                        <span class="error-message"></span>
+                        <div class="password-strength">
+                            <div class="strength-bar"></div>
+                        </div>
+                    </div>
+
+                    <div class="input-box">
+                        <input type="password" id="confirm-password" name="confirm-password" placeholder="Confirmer le mot de passe" required>
+                        <i class="fa-solid fa-lock"></i>
+                        <button type="button" class="toggle-password" aria-label="Afficher le mot de passe">
+                            <i class="fa-solid fa-eye"></i>
+                        </button>
+                        <span class="error-message"></span>
+                    </div>
+
+                    <div class="terms-box">
+                        <label>
+                            <input type="checkbox" id="terms" name="terms" required>
+                            <span>J'accepte les <a href="#">conditions d'utilisation</a> et la <a href="#">politique de confidentialité</a></span>
+                        </label>
+                        <span class="error-message"></span>
+                    </div>
+
+                    <button type="submit" class="signup-btn">
+                        <span class="btn-text">S'inscrire</span>
+                        <span class="btn-loader" aria-hidden="true"></span>
+                    </button>
+                </form>
+
+                <div class="login-link">
+                    <p>Déjà un compte ? <a href="protection.html">Se connecter</a></p>
+                </div>
+
+                <div id="success-message" class="success-message" role="alert" aria-live="polite">
+                    <i class="fa-solid fa-check-circle"></i>
+                    <span>Inscription réussie ! Redirection en cours...</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section Profil (affichée si connecté) -->
+        <section id="profile-section" class="profile-section" style="display: none;">
+            <div class="profile-card">
+                <div class="profile-header-section">
+                    <div class="profile-avatar">
+                        <i class="fa-solid fa-user-circle"></i>
+                    </div>
+                    <h1 class="profile-name" id="profile-name">Utilisateur</h1>
+                    <p class="profile-email" id="profile-email">email@example.com</p>
+                </div>
+
+                <div class="profile-info">
+                    <div class="info-section">
+                        <h2><i class="fa-solid fa-id-card"></i> Informations personnelles</h2>
+                        <div class="info-grid">
+                            <div class="info-item">
+                                <label>Nom complet</label>
+                                <p id="info-nom">-</p>
+                            </div>
+                            <div class="info-item">
+                                <label>Nom d'utilisateur</label>
+                                <p id="info-username">-</p>
+                            </div>
+                            <div class="info-item">
+                                <label>Adresse e-mail</label>
+                                <p id="info-email">-</p>
+                            </div>
+                            <div class="info-item">
+                                <label>Date d'inscription</label>
+                                <p id="info-date">-</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="info-section">
+                        <h2><i class="fa-solid fa-trophy"></i> Statistiques</h2>
+                        <div class="stats-grid">
+                            <div class="stat-card">
+                                <i class="fa-solid fa-gamepad"></i>
+                                <div>
+                                    <span class="stat-value" id="stat-games">0</span>
+                                    <span class="stat-label">Jeux joués</span>
+                                </div>
+                            </div>
+                            <div class="stat-card">
+                                <i class="fa-solid fa-star"></i>
+                                <div>
+                                    <span class="stat-value" id="stat-score">0</span>
+                                    <span class="stat-label">Score total</span>
+                                </div>
+                            </div>
+                            <div class="stat-card">
+                                <i class="fa-solid fa-calendar-days"></i>
+                                <div>
+                                    <span class="stat-value" id="stat-days">0</span>
+                                    <span class="stat-label">Jours actifs</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="info-section">
+                        <h2><i class="fa-solid fa-gear"></i> Actions</h2>
+                        <div class="actions-grid">
+                            <button class="action-btn" id="edit-profile-btn">
+                                <i class="fa-solid fa-pen"></i>
+                                <span>Modifier le profil</span>
+                            </button>
+                            <button class="action-btn" id="change-password-btn">
+                                <i class="fa-solid fa-key"></i>
+                                <span>Changer le mot de passe</span>
+                            </button>
+                            <a href="protection.html" class="action-btn logout-btn">
+                                <i class="fa-solid fa-sign-out-alt"></i>
+                                <span>Se déconnecter</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Modale de modification du profil -->
+        <div id="edit-profile-modal" class="modal" style="display: none;">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2>Modifier le profil</h2>
+                    <button class="modal-close" id="close-edit-modal">
+                        <i class="fa-solid fa-times"></i>
+                    </button>
+                </div>
+
+                <form id="edit-profile-form" class="edit-form">
+                    <div class="input-box">
+                        <label for="edit-nom">Nom complet</label>
+                        <input type="text" id="edit-nom" name="nom" placeholder="Nom complet" required>
+                        <i class="fa-solid fa-user"></i>
+                        <span class="error-message"></span>
+                    </div>
+
+                    <div class="input-box">
+                        <label for="edit-email">Adresse e-mail</label>
+                        <input type="email" id="edit-email" name="email" placeholder="Adresse e-mail" required>
+                        <i class="fa-solid fa-envelope"></i>
+                        <span class="error-message"></span>
+                    </div>
+
+                    <div class="input-box">
+                        <label for="edit-username">Nom d'utilisateur</label>
+                        <input type="text" id="edit-username" name="username" placeholder="Nom d'utilisateur" disabled>
+                        <i class="fa-solid fa-at"></i>
+                        <span class="help-text">Le nom d'utilisateur ne peut pas être modifié</span>
+                    </div>
+
+                    <div class="modal-actions">
+                        <button type="button" class="cancel-btn" id="cancel-edit-btn">Annuler</button>
+                        <button type="submit" class="save-btn">Enregistrer les modifications</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </main>
+
+        <!-- Modale de changement de mot de passe -->
+        <div id="change-password-modal" class="modal" style="display: none;">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2>Changer le mot de passe</h2>
+                    <button class="modal-close" id="close-change-password">
+                        <i class="fa-solid fa-times"></i>
+                    </button>
+                </div>
+
+                <form id="change-password-form" class="change-password-form">
+                    <div id="cp-message" class="modal-message" role="alert" aria-live="polite" style="margin-bottom:10px;color:#b00020;"></div>
+                    <div class="input-box">
+                        <label for="cp-username">Identifiant</label>
+                        <input type="text" id="cp-username" name="username" placeholder="Nom d'utilisateur" required>
+                        <i class="fa-solid fa-at"></i>
+                    </div>
+
+                    <div class="input-box">
+                        <label for="cp-current">Mot de passe actuel</label>
+                        <input type="password" id="cp-current" name="currentPassword" placeholder="Mot de passe actuel" required>
+                        <i class="fa-solid fa-lock"></i>
+                    </div>
+
+                    <div class="input-box">
+                        <label for="cp-new">Nouveau mot de passe</label>
+                        <input type="password" id="cp-new" name="newPassword" placeholder="Nouveau mot de passe" required>
+                        <i class="fa-solid fa-lock"></i>
+                    </div>
+
+                    <div class="input-box">
+                        <label for="cp-confirm">Confirmer le nouveau mot de passe</label>
+                        <input type="password" id="cp-confirm" name="confirmPassword" placeholder="Confirmer le mot de passe" required>
+                        <i class="fa-solid fa-lock"></i>
+                    </div>
+
+                    <div class="modal-actions">
+                        <button type="button" class="cancel-btn" id="cancel-change-password">Annuler</button>
+                        <button type="submit" class="save-btn">Enregistrer</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+    <script src="../JS/database.js"></script>
+    <script src="../JS/id.js" defer></script>
+    <script src="../JS/inscription.js" defer></script>
+</body>
+</html>
+
